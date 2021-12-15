@@ -67,7 +67,3 @@ mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/test-suites/Regressio
 
 # Webview
 * Make sure the menu text and hyperlink displayed correctly
-
-# Wrap up model and test flow
-
-# Sample for a test flow

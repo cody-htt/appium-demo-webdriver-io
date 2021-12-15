@@ -6,7 +6,7 @@
         <parameter name="port" value="7000"/>
         <parameter name="systemPort" value="8300"/>
         <classes>
-            <class name="test.authentication.LoginTest"/>
+            <class name="test.authentication.SignUpTest"/>
         </classes>
     </test>
     <test name="Swipe Up | emulator-5554">

@@ -39,8 +39,4 @@ public class LoginPage extends BasePage {
         return new SignUpFormComponent(this.appiumDriver);
     }
 
-    public BottomNavBarComponent bottomNavBarComponent() {
-        return new BottomNavBarComponent(this.appiumDriver);
-    }
-
 }

@@ -36,10 +36,6 @@ public class WebviewPage extends BasePage {
         return new LeftNavBarComponent(appiumDriver);
     }
 
-    public BottomNavBarComponent bottomNavBarComponent() {
-        return new BottomNavBarComponent(appiumDriver);
-    }
-
     public static class MenuItem {
         private final String label;
         private final String href;

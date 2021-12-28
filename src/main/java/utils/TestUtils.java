@@ -43,7 +43,7 @@ public class TestUtils {
 
     public HashMap<String, String> getExpectedStringMap() {
         // Initialize HashMap expectedStringMap basing on staticStrings.xml file
-        String xmlFileName = "static-string/authentication/ExpectedText.xml";
+        String xmlFileName = "static-string/ExpectedText.xml";
         InputStream isStringMap = getClass().getClassLoader().getResourceAsStream(xmlFileName);
         if (isStringMap == null) { throw new RuntimeException("Expected String Map is empty"); }
         return xmlStringParser(isStringMap);

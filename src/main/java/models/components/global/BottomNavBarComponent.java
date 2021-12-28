@@ -26,42 +26,6 @@ public class BottomNavBarComponent extends BasePage {
         super(appiumDriver);
     }
 
-    /* Context: return element mobile only */
-    public MobileElement bottomNavBarElem() {
-        waitForVisibility(bottomNavBarElem);
-        return bottomNavBarElem;
-    }
-
-    public MobileElement homeLabelELem() {
-        waitForVisibility(homeLabelElem);
-        return homeLabelElem;
-    }
-
-    public MobileElement webviewLabelElem() {
-        waitForVisibility(webviewLabelElem);
-        return webviewLabelElem;
-    }
-
-    public MobileElement loginLabelElem() {
-        waitForVisibility(loginLabelElem);
-        return loginLabelElem;
-    }
-
-    public MobileElement formsLabelElem() {
-        waitForVisibility(formsLabelElem);
-        return formsLabelElem;
-    }
-
-    public MobileElement swipeLabelElem() {
-        waitForVisibility(swipeLabelElem);
-        return swipeLabelElem;
-    }
-
-    public MobileElement dragLabelElem() {
-        waitForVisibility(dragLabelElem);
-        return dragLabelElem;
-    }
-
     /* Context: provide main interaction method with Mobile Element of this page */
 
     public void clickOnHomeLabel() {

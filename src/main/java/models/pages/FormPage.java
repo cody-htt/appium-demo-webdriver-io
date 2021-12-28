@@ -39,6 +39,11 @@ public class FormPage extends BasePage {
         swipeUtils = new SwipeUtils(this.appiumDriver);
     }
 
+    public MobileElement inputFieldElem() {
+        waitForVisibility(inputFieldElem);
+        return inputFieldElem;
+    }
+
     public MobileElement inputTextResultElem() {
         waitForVisibility(inputTextResultElem);
         return inputTextResultElem;
@@ -74,9 +79,4 @@ public class FormPage extends BasePage {
         clickElement(activeBtnElem);
         return new ActiveBtnDialogComponent(this.appiumDriver);
     }
-
-    public BottomNavBarComponent bottomNavBarComponent() {
-        return new BottomNavBarComponent(this.appiumDriver);
-    }
-
 }

@@ -3,14 +3,14 @@ package models.pages;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import models.components.global.BottomNavBarComponent;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Constant;
 
 import java.util.List;
-
-import static org.openqa.selenium.support.PageFactory.initElements;
 
 public class BasePage {
 
@@ -19,7 +19,7 @@ public class BasePage {
 
     protected BasePage(AppiumDriver<MobileElement> appiumDriver) {
         this.appiumDriver = appiumDriver;
-        initElements(new AppiumFieldDecorator(this.appiumDriver), this);
+        PageFactory.initElements(new AppiumFieldDecorator(this.appiumDriver), this);
     }
 
     protected void waitForVisibility(MobileElement element) {
@@ -96,6 +96,10 @@ public class BasePage {
     protected boolean isElementPresent(By locator) {
         List<MobileElement> elements = appiumDriver.findElements(locator);
         return elements.size() > 0;
+    }
+
+    public BottomNavBarComponent bottomNavBarComponent() {
+        return new BottomNavBarComponent(this.appiumDriver);
     }
 
 }

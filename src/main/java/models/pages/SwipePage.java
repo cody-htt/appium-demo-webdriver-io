@@ -73,10 +73,6 @@ public class SwipePage extends BasePage {
         swipeUtils.swipeUpUntilElementFound(webDriverIOLogoLoc, 0.72);
     }
 
-    public BottomNavBarComponent bottomNavBarComponent() {
-        return new BottomNavBarComponent(appiumDriver);
-    }
-
     public static class Card {
         private final String cardName;
         private final String cardText;

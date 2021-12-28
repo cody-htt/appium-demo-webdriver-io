@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import utils.TestUtils;
 
 import java.io.File;
 import java.io.InputStream;
@@ -41,9 +42,6 @@ public class BaseTest {
     @AfterTest(alwaysRun = true)
     public void afterTest() {
         driverThread.get().quitAppiumSession();
-//        for (DriverFactoryEx webDriverThread : driverThreadPool) {
-//            webDriverThread.quitAppiumSession();
-//        }
     }
 
     public AppiumDriver<MobileElement> getDriver() {
@@ -62,15 +60,18 @@ public class BaseTest {
             String testMethodName = result.getName();
 
             // 2. Declare the file location
-            Calendar calendar = new GregorianCalendar();
-            int y = calendar.get(Calendar.YEAR);
-            int m = calendar.get(Calendar.MONTH);
-            int d = calendar.get(Calendar.DATE);
-            int hr = calendar.get(Calendar.HOUR_OF_DAY);
-            int min = calendar.get(Calendar.MINUTE);
-            int sec = calendar.get(Calendar.SECOND);
-            String dateTaken = y + "-" + (m + 1) + "-" + d + "-" + hr + "-" + min + "-" + sec;
-            String fileLocation = System.getProperty("user.dir") + "/screenshot/" + testMethodName + "_"+ dateTaken + ".png";
+//            Calendar calendar = new GregorianCalendar();
+//            int y = calendar.get(Calendar.YEAR);
+//            int m = calendar.get(Calendar.MONTH);
+//            int d = calendar.get(Calendar.DATE);
+//            int hr = calendar.get(Calendar.HOUR_OF_DAY);
+//            int min = calendar.get(Calendar.MINUTE);
+//            int sec = calendar.get(Calendar.SECOND);
+//            String dateTaken = y + "-" + (m + 1) + "-" + d + "-" + hr + "-" + min + "-" + sec;
+//            String fileLocation = System.getProperty("user.dir") + "/screenshot/" + testMethodName + "_"+ dateTaken + ".png";
+            TestUtils testUtils = new TestUtils();
+            String dateTaken = testUtils.getDateTime();
+            String fileLocation = System.getProperty("user.dir") + File.separator + "ScreenShot" + File.separator + testMethodName + "_" + dateTaken + ".png";
 
             // 3. Declare the file name
 
@@ -78,7 +79,7 @@ public class BaseTest {
             File screenShot = driverThread.get().getAppiumDriver().getScreenshotAs(OutputType.FILE);
 
             try {
-                FileUtils.copyFile(screenShot, new File(fileLocation));
+                FileUtils.copyFile(screenShot, new File(fileLocation.trim()));
                 Path content = Paths.get(fileLocation);
                 try (InputStream is = Files.newInputStream(content)) {
                     Allure.addAttachment(testMethodName, is);

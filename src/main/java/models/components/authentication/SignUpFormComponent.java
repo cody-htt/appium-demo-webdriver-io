@@ -1,31 +1,77 @@
 package models.components.authentication;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
+import models.base.PageModel;
 
-public class SignUpFormComponent extends CredsFormComponent {
+public class SignUpFormComponent extends PageModel {
 
-    private final AppiumDriver<MobileElement> appiumDriver;
-    private final By confirmPasswordSel = MobileBy.AccessibilityId("input-repeat-password");
-    private final By signUpBtnSel = MobileBy.AccessibilityId("button-SIGN UP");
+    @AndroidFindBy(accessibility = "input-email")
+    private MobileElement emailInputFieldElem;
+    @AndroidFindBy(accessibility = "input-password")
+    private MobileElement passwordFieldElem;
+    @AndroidFindBy(accessibility = "input-repeat-password")
+    private MobileElement repeatPasswordFieldElem;
+    @AndroidFindBy(accessibility = "button-SIGN UP")
+    private MobileElement signUpBtnElem;
+    @AndroidFindBy(xpath = "//*[@content-desc='button-SIGN UP']/preceding-sibling::android.widget.TextView[1]")
+    private MobileElement invalidEmailMessageElem;
+    @AndroidFindBy(xpath = "//*[@content-desc='button-SIGN UP']/preceding-sibling::android.widget.TextView[2]")
+    private MobileElement invalidPasswordMessageElem;
+    @AndroidFindBy(xpath = "//*[@content-desc='button-SIGN UP']/preceding-sibling::android.widget.TextView[3]")
+    private MobileElement invalidRepeatPwMessageElem;
 
     public SignUpFormComponent(AppiumDriver<MobileElement> appiumDriver) {
         super(appiumDriver);
-        this.appiumDriver = appiumDriver;
     }
 
-    @Step("Retype password {password}")
-    public SignUpFormComponent retypePassword(String password){
-        appiumDriver.findElement(confirmPasswordSel).sendKeys(password);
+    public MobileElement signUpBtnElem() {
+        waitForVisibility(signUpBtnElem);
+        return signUpBtnElem;
+    }
+
+    public MobileElement invalidEmailMessageElem() {
+        waitForVisibility(invalidEmailMessageElem);
+        return invalidEmailMessageElem;
+    }
+
+    public MobileElement invalidPasswordMessageElem() {
+        waitForVisibility(invalidPasswordMessageElem);
+        return invalidPasswordMessageElem;
+    }
+
+    public MobileElement invalidRepeatPwMessageElem() {
+        waitForVisibility(invalidRepeatPwMessageElem);
+        return invalidRepeatPwMessageElem;
+    }
+
+    @Step("Input email as {email}")
+    public SignUpFormComponent inputEmailField(String email) {
+        clearElementInputField(emailInputFieldElem);
+        sendKeysToElement(emailInputFieldElem, email);
         return this;
     }
 
-    @Step("Click on Sign up button")
-    public SignUpFormComponent clickOnSignUpBtn(){
-        appiumDriver.findElement(signUpBtnSel).click();
+    @Step("Input password as {password}")
+    public SignUpFormComponent inputPasswordField(String password) {
+        clearElementInputField(passwordFieldElem);
+        sendKeysToElement(passwordFieldElem, password);
         return this;
     }
+
+    @Step("Input repeat password as {password}")
+    public SignUpFormComponent inputRepeatPasswordField(String password) {
+        clearElementInputField(repeatPasswordFieldElem);
+        sendKeysToElement(repeatPasswordFieldElem, password);
+        return this;
+    }
+
+    @Step("Click on Sign Up button")
+    public DialogComponent clickOnSignUpBtn() {
+        clickElement(signUpBtnElem);
+        return new DialogComponent(this.appiumDriver);
+    }
+
 }

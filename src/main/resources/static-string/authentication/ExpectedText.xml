@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource>
+
+    <!-- Expected Login Success Dialog Text -->
+    <string name="success_login_dialog_title">Success</string>
+    <string name="success_login_dialog_msg">You are logged in!</string>
+    <!-- Expected Login Error Text -->
+    <string name="error_login_invalid_email_msg">Please enter a valid email address</string>
+    <string name="error_login_invalid_password_msg">Please enter at least 8 characters</string>
+    <!-- Expected Sign Up Success Dialog Text -->
+    <string name="success_sign_up_dialog_title">Signed Up!</string>
+    <string name="success_sign_up_dialog_msg">You successfully signed up!</string>
+    <!-- Expected Login Error Text -->
+    <string name="error_sign_up_invalid_email_msg">Please enter a valid email address</string>
+    <string name="error_sign_up_invalid_password_msg">Please enter at least 8 characters</string>
+    <string name="error_sign_up_wrong_repeat_password_msg">Please enter the same password</string>
+
+</resource>

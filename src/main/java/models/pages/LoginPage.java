@@ -1,71 +1,47 @@
 package models.pages;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
-import models.components.authentication.CredsFormComponent;
-import models.components.authentication.LoginDialogComponent;
+import models.base.PageModel;
+import models.components.global.BottomNavBarComponent;
+import models.components.authentication.LoginFormComponent;
 import models.components.authentication.SignUpFormComponent;
-import org.openqa.selenium.By;
 
-public class LoginPage extends Page {
+public class LoginPage extends PageModel {
 
-    private final AppiumDriver<MobileElement> appiumDriver;
-    private CredsFormComponent credsFormComponent;
-    private SignUpFormComponent signUpFormComponent;
-    private static final By loginBtnSel = MobileBy.AccessibilityId("button-LOGIN");
-    private static final By signUpLabelSel = MobileBy.AccessibilityId("button-sign-up-container");
+    @AndroidFindBy(accessibility = "button-login-container")
+    private MobileElement loginFormLabelElem;
+    @AndroidFindBy(accessibility = "button-sign-up-container")
+    private MobileElement signUpFormLabelElem;
 
     public LoginPage(AppiumDriver<MobileElement> appiumDriver) {
         super(appiumDriver);
-        this.appiumDriver = appiumDriver;
-        credsFormComponent = new CredsFormComponent(appiumDriver);
     }
 
-    public LoginPage inputUsername(String username){
-        credsFormComponent.inputUsername(username);
-        return this;
+    @Step("Select Login Form")
+    public boolean selectLoginForm() {
+        loginFormLabelElem.click();
+        return loginFormComponent().loginBtnElem().isDisplayed();
     }
 
-    public LoginPage inputPassword(String password){
-        credsFormComponent.inputPassword(password);
-        return this;
+    @Step("Select Sign Up Form")
+    public boolean selectSignUpForm() {
+        signUpFormLabelElem.click();
+        return signUpFormComponent().signUpBtnElem().isDisplayed();
     }
 
-    @Step("Click on Sign up label")
-    public LoginPage clickOnSignUpLabel(){
-        appiumDriver.findElement(signUpLabelSel).click();
-        signUpFormComponent = new SignUpFormComponent(appiumDriver);
-        return this;
+    public LoginFormComponent loginFormComponent() {
+        return new LoginFormComponent(this.appiumDriver);
     }
 
-    public LoginPage signUpInputUsername(String username){
-        signUpFormComponent.inputUsername(username);
-        return this;
+    public SignUpFormComponent signUpFormComponent() {
+        return new SignUpFormComponent(this.appiumDriver);
     }
 
-    public LoginPage signUpInputPassword(String password){
-        signUpFormComponent.inputPassword(password);
-        return this;
+    public BottomNavBarComponent bottomNavBarComponent() {
+        return new BottomNavBarComponent(this.appiumDriver);
     }
 
-    public LoginPage signUpRetypePassword(String password){
-        signUpFormComponent.retypePassword(password);
-        return this;
-    }
-
-    public void clickOnOnSignUpBtn(){
-        signUpFormComponent.clickOnSignUpBtn();
-    }
-
-    @Step("Click on login btn")
-    public LoginPage clickOnLoginBtn() {
-        appiumDriver.findElement(loginBtnSel).click();
-        return this;
-    }
-
-    public LoginDialogComponent loginDialogComp() {
-        return new LoginDialogComponent(appiumDriver);
-    }
 }

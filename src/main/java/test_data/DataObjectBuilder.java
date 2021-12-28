@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class DataObjectBuilder {
 
-    public static <T> T buildDataObject(String filePath, Class<T> dataType) {
+    public <T> T buildDataObject(String filePath, Class<T> dataType) {
         String absoluteFilePath = System.getProperty("user.dir") + filePath;
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(absoluteFilePath))

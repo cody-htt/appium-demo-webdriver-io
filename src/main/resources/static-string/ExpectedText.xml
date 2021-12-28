@@ -24,7 +24,7 @@
     <!-- Form Page Text
    Expected Switch Btn Text -->
     <string name="switch_on_msg">Click to turn the switch ON</string>
-    <string name="switch_on_msg">Click to turn the switch OFF</string>
+    <string name="switch_off_msg">Click to turn the switch OFF</string>
     <!-- End Form Page Text -->
 
 </resource>

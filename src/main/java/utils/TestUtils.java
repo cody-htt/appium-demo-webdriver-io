@@ -1,5 +1,6 @@
 package utils;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.w3c.dom.Document;
@@ -87,5 +88,12 @@ public class TestUtils {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    public String randomStringGenerator() {
+        int stringLength = 10;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        return RandomStringUtils.random(stringLength, useLetters, useNumbers);
     }
 }

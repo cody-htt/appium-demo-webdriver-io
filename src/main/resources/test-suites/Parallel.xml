@@ -6,8 +6,9 @@
         <parameter name="port" value="7000"/>
         <parameter name="systemPort" value="8300"/>
         <classes>
-            <class name="test.home.HomeTest"/>
-            <class name="test.authentication.LoginTest"/>
+<!--            <class name="test.home.HomeTest"/>-->
+<!--            <class name="test.authentication.LoginTest"/>-->
+            <class name="test.form.FormTest"/>
         </classes>
     </test>
 <!--    <test name="Login Test | emulator-5554">-->

@@ -49,6 +49,11 @@ public class FormPage extends BasePage {
         return inputTextResultElem;
     }
 
+    public MobileElement switchBtnElem() {
+        waitForVisibility(switchBtnElem);
+        return switchBtnElem;
+    }
+
     public MobileElement switchTextElem() {
         waitForVisibility(switchTextElem);
         return switchTextElem;

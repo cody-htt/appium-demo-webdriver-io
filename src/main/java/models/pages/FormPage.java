@@ -4,14 +4,13 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import models.base.PageModel;
-import models.components.global.BottomNavBarComponent;
 import models.components.forms_comp.ActiveBtnDialogComponent;
 import models.components.forms_comp.DropdownDialogComponent;
+import models.components.global.BottomNavBarComponent;
 import org.openqa.selenium.By;
 import utils.SwipeUtils;
 
-public class FormPage extends PageModel {
+public class FormPage extends BasePage {
 
     @AndroidFindBy(accessibility = "text-input")
     private MobileElement inputFieldElem;

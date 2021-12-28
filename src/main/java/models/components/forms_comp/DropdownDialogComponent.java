@@ -3,11 +3,11 @@ package models.components.forms_comp;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import models.base.PageModel;
+import models.pages.BasePage;
 
 import java.util.List;
 
-public class DropdownDialogComponent extends PageModel {
+public class DropdownDialogComponent extends BasePage {
     @AndroidFindBy(xpath = "//*[@resource-id='com.wdiodemoapp:id/select_dialog_listview']")
     private MobileElement dropDownListViewDialog;
     @AndroidFindBy(xpath = "//*[@resource-id='com.wdiodemoapp:id/select_dialog_listview']/android.widget.CheckedTextView")

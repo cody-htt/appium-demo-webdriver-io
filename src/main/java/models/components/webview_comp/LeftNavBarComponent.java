@@ -4,13 +4,13 @@ import environments.Context;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
-import models.base.PageModel;
+import models.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class LeftNavBarComponent extends PageModel {
+public class LeftNavBarComponent extends BasePage {
 
     @FindBy(css = ".navbarSidebarToggle_wkoY")
     private MobileElement viewModeToggleBtnElem;

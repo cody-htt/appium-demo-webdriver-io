@@ -24,30 +24,30 @@ public class LoginTest extends BaseTest {
         LoginFlow loginFlow = new LoginFlow(androidDriver);
         loginFlow.navigateToLoginPage()
                  .login(loginCreds)
-                 .verifyLoginWithIncorrectCreds(loginCreds);
+                 .verifyLoginFail(loginCreds);
     }
 
     @TmsLink("Login_004")
     @Description("Test login with correct creds...")
     @Test(dataProvider = "validLoginCredsData",description = "Login Test", priority = 2)
-    public void loginWithcorrectCreds(LoginCreds loginCreds) {
+    public void loginWithCorrectCreds(LoginCreds loginCreds) {
         // Init driver
         AppiumDriver<MobileElement> androidDriver = getDriver();
         LoginFlow loginFlow = new LoginFlow(androidDriver);
         loginFlow.navigateToLoginPage()
                  .login(loginCreds)
-                 .verifyLoginWithCorrectCreds();
+                 .verifyLoginSuccesful();
     }
 
     @DataProvider
     public LoginCreds[] invalidLoginCredsData() {
-        String jsonLoc = "src/test/resources/data/authentication/invalidLoginCreds.json";
+        String jsonLoc = "/src/main/resources/test-data/authentication/invalidLoginCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, LoginCreds[].class);
     }
 
     @DataProvider
     public LoginCreds[] validLoginCredsData() {
-        String jsonLoc = "src/test/resources/data/authentication/validLoginCreds.json";
+        String jsonLoc = "/src/main/resources/test-data/authentication/validLoginCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, LoginCreds[].class);
     }
 }

@@ -3,9 +3,9 @@ package models.components.global;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import models.base.PageModel;
+import models.pages.BasePage;
 
-public class BottomNavBarComponent extends PageModel {
+public class BottomNavBarComponent extends BasePage {
 
     @AndroidFindBy(xpath = "//android.widget.Button[@content-desc='Home']/parent::android.view.ViewGroup")
     private MobileElement bottomNavBarElem;

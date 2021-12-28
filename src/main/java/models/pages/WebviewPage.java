@@ -3,12 +3,11 @@ package models.pages;
 import environments.Context;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import models.base.PageModel;
 import models.components.global.BottomNavBarComponent;
 import models.components.webview_comp.LeftNavBarComponent;
 import org.openqa.selenium.support.FindBy;
 
-public class WebviewPage extends PageModel {
+public class WebviewPage extends BasePage {
 
     @FindBy(css = ".navbar__toggle > svg")
     private MobileElement leftNavBarToggleBtnElem;

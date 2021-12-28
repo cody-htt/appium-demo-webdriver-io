@@ -3,9 +3,9 @@ package test_flows.authentication;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
-import models.components.global.BottomNavBarComponent;
 import models.components.authentication.DialogComponent;
 import models.components.authentication.LoginFormComponent;
+import models.components.global.BottomNavBarComponent;
 import models.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -57,7 +57,7 @@ public class LoginFlow {
     }
 
     @Step("Verify successfully login with valid credentials")
-    public LoginFlow verifyLoginWithCorrectCreds() {
+    public LoginFlow verifyLoginSuccesful() {
         // Verification
         String actualDialogTitle = dialogComp.dialogTitleElem().getText();
         String actualDialogMessage = dialogComp.dialogMessageElem().getText();
@@ -73,7 +73,7 @@ public class LoginFlow {
     }
 
     @Step("Verify unsuccessfully login with valid credentials")
-    public LoginFlow verifyLoginWithIncorrectCreds(LoginCreds loginCreds) {
+    public LoginFlow verifyLoginFail(LoginCreds loginCreds) {
         //Verification
         String actualErrorText;
         String expectedEmailErrMessage = expectedStringMap.get("error_login_invalid_email_msg");

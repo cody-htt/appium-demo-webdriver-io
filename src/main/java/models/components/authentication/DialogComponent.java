@@ -4,9 +4,9 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
-import models.base.PageModel;
+import models.pages.BasePage;
 
-public class DialogComponent extends PageModel {
+public class DialogComponent extends BasePage {
 
     @AndroidFindBy(id = "android:id/title_template")
     private MobileElement dialogTemplateElem;

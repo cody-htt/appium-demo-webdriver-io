@@ -4,7 +4,6 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import models.base.PageModel;
 import models.components.global.BottomNavBarComponent;
 import org.openqa.selenium.By;
 import utils.SwipeUtils;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SwipePage extends PageModel {
+public class SwipePage extends BasePage {
     public final List<String> CARD_TEXT = new ArrayList<>(
             Arrays.asList("FULLY OPEN SOURCE", "GREAT COMMUNITY", "JS.FOUNDATION", "SUPPORT VIDEOS", "EXTENDABLE", "COMPATIBLE"));
 

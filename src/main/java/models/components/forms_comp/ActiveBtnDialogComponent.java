@@ -3,9 +3,9 @@ package models.components.forms_comp;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import models.base.PageModel;
+import models.pages.BasePage;
 
-public class ActiveBtnDialogComponent extends PageModel {
+public class ActiveBtnDialogComponent extends BasePage {
 
     @AndroidFindBy(xpath = "//*[@resource-id='android:id/parentPanel']")
     private MobileElement activeParentPanelElem;

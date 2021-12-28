@@ -4,9 +4,9 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
-import models.base.PageModel;
+import models.pages.BasePage;
 
-public class LoginFormComponent extends PageModel {
+public class LoginFormComponent extends BasePage {
 
     @AndroidFindBy(accessibility = "input-email")
     private MobileElement emailInputFieldElem;

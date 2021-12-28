@@ -4,12 +4,11 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
-import models.base.PageModel;
-import models.components.global.BottomNavBarComponent;
 import models.components.authentication.LoginFormComponent;
 import models.components.authentication.SignUpFormComponent;
+import models.components.global.BottomNavBarComponent;
 
-public class LoginPage extends PageModel {
+public class LoginPage extends BasePage {
 
     @AndroidFindBy(accessibility = "button-login-container")
     private MobileElement loginFormLabelElem;

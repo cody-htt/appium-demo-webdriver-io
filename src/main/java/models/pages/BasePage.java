@@ -1,24 +1,25 @@
-package models.base;
+package models.pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Constant;
 
 import java.util.List;
 
-public class PageModel {
+import static org.openqa.selenium.support.PageFactory.initElements;
+
+public class BasePage {
 
     //    protected ThreadLocal<AppiumDriver<MobileElement>> appiumDriver;
     protected AppiumDriver<MobileElement> appiumDriver;
 
-    protected PageModel(AppiumDriver<MobileElement> appiumDriver) {
+    protected BasePage(AppiumDriver<MobileElement> appiumDriver) {
         this.appiumDriver = appiumDriver;
-        PageFactory.initElements(new AppiumFieldDecorator(this.appiumDriver), this);
+        initElements(new AppiumFieldDecorator(this.appiumDriver), this);
     }
 
     protected void waitForVisibility(MobileElement element) {

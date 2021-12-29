@@ -4,32 +4,25 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import models.components.global.BottomNavBarComponent;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import utils.SwipeUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class SwipePage extends BasePage {
-    public final List<String> CARD_TEXT = new ArrayList<>(
-            Arrays.asList("FULLY OPEN SOURCE", "GREAT COMMUNITY", "JS.FOUNDATION", "SUPPORT VIDEOS", "EXTENDABLE", "COMPATIBLE"));
 
-    @AndroidFindBy(xpath = "(//*[@content-desc='slideTextContainer'])[1]/android.widget.TextView[1]")
-    private MobileElement firstCardTitleElem;
-    @AndroidFindBy(xpath = "(//*[@content-desc='slideTextContainer'])[1]/android.widget.TextView[2]")
-    private MobileElement firstCardTextElem;
-    @AndroidFindBy(xpath = "(//*[@content-desc='slideTextContainer'])[2]/android.widget.TextView[1]")
-    private MobileElement centerCardTitleElem;
-    @AndroidFindBy(xpath = "(//*[@content-desc='slideTextContainer'])[2]/android.widget.TextView[2]")
-    private MobileElement centerCardTextElem;
+    @AndroidFindBy(xpath = "(//*[@content-desc='slideTextContainer'])[1]")
+    private MobileElement firstCardTextContainerElem;
+    @AndroidFindBy(xpath = "(//*[@content-desc='slideTextContainer'])[2]")
+    private MobileElement centerCardTextContainerElem;
+    @AndroidFindBy(xpath = "(//*[@content-desc='card'])[3]")
+    private MobileElement nextCardElem;
     @AndroidFindBy(accessibility = "WebdriverIO logo")
     private MobileElement webDriverIOLogo;
     @AndroidFindBy(xpath = "//*[@content-desc='WebdriverIO logo']/following-sibling::android.widget.TextView")
     private MobileElement webDriverIOLogoTextElem;
 
-    private final By webDriverIOLogoLoc = MobileBy.AccessibilityId("WebdriverIO logo");
+    private By webDriverIOLogoLoc = MobileBy.AccessibilityId("WebdriverIO logo");
 
     private final SwipeUtils swipeUtils;
 
@@ -39,24 +32,31 @@ public class SwipePage extends BasePage {
     }
 
     /* Return Mobile Element */
+    public MobileElement firstCardTextContainer() {
+        waitForVisibility(firstCardTextContainerElem);
+        return firstCardTextContainerElem;
+    }
+
     public MobileElement firstCardTitleElem() {
-        waitForVisibility(firstCardTitleElem);
-        return firstCardTitleElem;
+        return firstCardTextContainerElem.findElement(By.xpath("//android.widget.TextView[1]"));
     }
 
     public MobileElement firstCardTextElem() {
-        waitForVisibility(firstCardTextElem);
-        return firstCardTextElem;
+        return firstCardTextContainerElem.findElement(By.xpath("//android.widget.TextView[2]"));
     }
 
+
     public MobileElement centerCardTitleElem() {
-        waitForVisibility(centerCardTitleElem);
-        return centerCardTitleElem;
+        return centerCardTextContainerElem.findElement(By.xpath("//android.widget.TextView[1]"));
     }
 
     public MobileElement centerCardTextElem() {
-        waitForVisibility(centerCardTextElem);
-        return centerCardTextElem;
+        return centerCardTextContainerElem.findElement(By.xpath("//android.widget.TextView[2]"));
+    }
+
+    public MobileElement webDriverIOLogo() {
+        waitForVisibility(webDriverIOLogo);
+        return webDriverIOLogo;
     }
 
     public MobileElement webDriverIOLogoTextElem() {
@@ -65,6 +65,15 @@ public class SwipePage extends BasePage {
     }
 
     /* Provide main interaction on specific Mobile Element */
+    public boolean hasNextCard() {
+        try {
+            nextCardElem.isDisplayed();
+        } catch (NoSuchElementException | TimeoutException ex) {
+            return false;
+        }
+        return true;
+    }
+
     public void swipeToNextCard() {
         swipeUtils.swipeToLeft(0.86);
     }
@@ -73,18 +82,4 @@ public class SwipePage extends BasePage {
         swipeUtils.swipeUpUntilElementFound(webDriverIOLogoLoc, 0.72);
     }
 
-    public static class Card {
-        private final String cardName;
-        private final String cardText;
-
-        public Card(String cardName, String cardText) {
-            this.cardName = cardName;
-            this.cardText = cardText;
-        }
-
-        @Override
-        public String toString() {
-            return "Card name: " + cardName + "\n" + "Card text: " + cardText + "\n------------------------------------------------";
-        }
-    }
 }

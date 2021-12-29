@@ -16,7 +16,6 @@ public class HomeScreenTest extends BaseTest {
     public void checkAppPurposeDescription() {
         AppiumDriver<MobileElement> appiumDriver = getDriver();
         HomeFlow homeFlow = new HomeFlow(appiumDriver);
-
         homeFlow
                 .initHomePage()
                 .navigateToHomePage()
@@ -29,7 +28,6 @@ public class HomeScreenTest extends BaseTest {
     public void checkSupportChannelDisplayed() {
         AppiumDriver<MobileElement> appiumDriver = getDriver();
         HomeFlow homeFlow = new HomeFlow(appiumDriver);
-
         homeFlow
                 .initHomePage()
                 .navigateToHomePage()

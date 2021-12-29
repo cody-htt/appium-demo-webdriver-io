@@ -1,0 +1,26 @@
+[
+  {
+    "cardTitle": "FULLY OPEN SOURCE",
+    "cardText": "WebdriverIO is fully open source and can be found on GitHub"
+  },
+  {
+    "cardTitle": "GREAT COMMUNITY",
+    "cardText": "WebdriverIO has a great community that supports all members."
+  },
+  {
+    "cardTitle": "JS.FOUNDATION",
+    "cardText": "The JS Foundation is host to projects that span the entire JavaScript ecosystem."
+  },
+  {
+    "cardTitle": "SUPPORT VIDEOS",
+    "cardText": "The community around WebdriverIO is actively speaking on various user groups or conferences about specific topics around automated testing with WebdriverIO."
+  },
+  {
+    "cardTitle": "EXTENDABLE",
+    "cardText": "Adding helper functions, or more complicated sets and combinations of existing commands is simple and really useful"
+  },
+  {
+    "cardTitle": "COMPATIBLE",
+    "cardText": "WebdriverIO works in combination with most of the TDD and BDD test frameworks in the JavaScript world"
+  }
+]

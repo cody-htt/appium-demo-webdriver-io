@@ -7,7 +7,7 @@ import io.qameta.allure.TmsLink;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import test.BaseTest;
-import test_flows.form.FormFlow;
+import test_flows.form.FormsFlow;
 
 public class FormScreenTest extends BaseTest {
 
@@ -16,8 +16,8 @@ public class FormScreenTest extends BaseTest {
     @Test(description = "Verify input text from user can be displayed")
     public void verifyInputTextCanBeDisplayed() {
         AppiumDriver<MobileElement> appiumDriver = getDriver();
-        FormFlow formFlow = new FormFlow(appiumDriver);
-        formFlow
+        FormsFlow formsFlow = new FormsFlow(appiumDriver);
+        formsFlow
                 .navigateToFormsPage()
                 .inputRandomText()
                 .verifyInputTextDisplayCorrectly();
@@ -29,8 +29,8 @@ public class FormScreenTest extends BaseTest {
     @Test(dataProvider = "switchBtnState", description = "Verify user can tap on switch on/off button and text is displayed")
     public void verifyClickingOnSwitchButton(String state) {
         AppiumDriver<MobileElement> appiumDriver = getDriver();
-        FormFlow formFlow = new FormFlow(appiumDriver);
-        formFlow
+        FormsFlow formsFlow = new FormsFlow(appiumDriver);
+        formsFlow
                 .navigateToFormsPage()
                 .tapOnSwitchButton(state)
                 .verifySwitchBtnState(state)
@@ -42,8 +42,8 @@ public class FormScreenTest extends BaseTest {
     @Test(dataProvider = "dropdownItems", description = "Verify user is able to select item from dropdown")
     public void verifyItemInDropdownList(int indexOfItem, String itemValue) {
         AppiumDriver<MobileElement> appiumDriver = getDriver();
-        FormFlow formFlow = new FormFlow(appiumDriver);
-        formFlow
+        FormsFlow formsFlow = new FormsFlow(appiumDriver);
+        formsFlow
                 .navigateToFormsPage()
                 .tapOnDropdownIcon()
                 .selectItemFromDropdown(indexOfItem)
@@ -55,8 +55,8 @@ public class FormScreenTest extends BaseTest {
     @Test(description = "Verify Active Button is Clickable and Texts are displayed correctly")
     public void verifyActiveButtonIsWorking() {
         AppiumDriver<MobileElement> appiumDriver = getDriver();
-        FormFlow formFlow = new FormFlow(appiumDriver);
-        formFlow
+        FormsFlow formsFlow = new FormsFlow(appiumDriver);
+        formsFlow
                 .navigateToFormsPage()
                 .tapOnActiveButton()
                 .verifyActiveDialogIsDisplayed();

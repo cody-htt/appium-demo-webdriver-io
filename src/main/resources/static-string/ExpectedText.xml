@@ -34,4 +34,11 @@
     <string name="active_dialog_msg">This button is active</string>
     <!-- End Form Page Text -->
 
+    <!-- Swipe Page Text
+   Expected Card Title and Text Description -->
+    <string name="open_source_card_title">FULLY OPEN SOURCE</string>
+    <string name="open_source_card_text">WebdriverIO is fully open source and can be found on GitHub</string>
+    <!-- Expected Card Logo Title -->
+    <string name="logo_title">You found me!!!</string>
+    <!-- End Swipe Page Text -->
 </resource>

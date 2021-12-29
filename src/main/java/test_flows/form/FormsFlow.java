@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FormFlow {
+public class FormsFlow {
 
     private final List<String> dropDownListItem = new ArrayList<>();
     private final AppiumDriver<MobileElement> appiumDriver;
@@ -25,35 +25,35 @@ public class FormFlow {
     private ActiveBtnDialogComponent activeBtnDialogComp;
     private SoftAssert softAssert;
 
-    public FormFlow(AppiumDriver<MobileElement> appiumDriver) {
+    public FormsFlow(AppiumDriver<MobileElement> appiumDriver) {
         this.appiumDriver = appiumDriver;
         this.expectedStringMap = new TestUtils().getExpectedStringMap();
         this.softAssert = new SoftAssert();
     }
 
-    public FormFlow navigateToFormsPage() {
+    public FormsFlow navigateToFormsPage() {
         if (formPage == null) {
             initFormsPage();
         }
-        // Init Bottom Nav Comp and Navigate to Login Page
+        // Init Bottom Nav Comp and Navigate to Forms Page
         BottomNavBarComponent bottomNavBarComp = formPage.bottomNavBarComponent();
         bottomNavBarComp.clickOnFormsLabel();
         return this;
     }
 
-    public FormFlow initFormsPage() {
+    public FormsFlow initFormsPage() {
         formPage = new FormPage(appiumDriver);
         return this;
     }
 
     @Step("Enter some text in input field")
-    public FormFlow inputRandomText() {
+    public FormsFlow inputRandomText() {
         formPage.inputField(new TestUtils().randomStringGenerator());
         return this;
     }
 
     @Step("Verify Input Text Is Displayed Correctly")
-    public FormFlow verifyInputTextDisplayCorrectly() {
+    public FormsFlow verifyInputTextDisplayCorrectly() {
         String actualDisplayedText = formPage.inputTextResultElem().getText();
         String expectedInputText = formPage.inputFieldElem().getText();
         Assert.assertEquals(actualDisplayedText, expectedInputText);
@@ -61,7 +61,7 @@ public class FormFlow {
     }
 
     @Step("Switching Button To On/Off")
-    public FormFlow tapOnSwitchButton(String state) {
+    public FormsFlow tapOnSwitchButton(String state) {
         if (state.equalsIgnoreCase("ON")) {
             formPage.clickOnSwitchBtn();
         }
@@ -72,7 +72,7 @@ public class FormFlow {
     }
 
     @Step("Verify Switch Button Is In Correct State")
-    public FormFlow verifySwitchBtnState(String state) {
+    public FormsFlow verifySwitchBtnState(String state) {
         String actualSwitchMsg = formPage.switchTextElem().getText();
         if (state.equalsIgnoreCase("ON")) {
             boolean isOn = formPage.switchBtnElem().getText().equalsIgnoreCase("ON");
@@ -85,7 +85,7 @@ public class FormFlow {
     }
 
     @Step("Verify Text Is Displayed Properly With Switch Button State ON/OFF")
-    public FormFlow verifyTextDisplayedAsState(String state) {
+    public FormsFlow verifyTextDisplayedAsState(String state) {
         String actualSwitchMsg = formPage.switchTextElem().getText();
         String expectedSwitchMsg;
         if (state.equalsIgnoreCase("ON")) {
@@ -99,33 +99,33 @@ public class FormFlow {
     }
 
     @Step("Tap and Select Value From Dropdown List")
-    public FormFlow tapOnDropdownIcon() {
+    public FormsFlow tapOnDropdownIcon() {
         dropdownDialogComp = formPage.clickOnDropDownIcon();
         dropdownDialogComp.dialogListItems().forEach(item -> dropDownListItem.add(item.getText()));
         return this;
     }
 
     @Step("Select Item From Dropdown List")
-    public FormFlow selectItemFromDropdown(int index) {
+    public FormsFlow selectItemFromDropdown(int index) {
         dropdownDialogComp.getItemFromList(index).click();
         return this;
     }
 
     @Step("Verify Select Item From Dropdown Is Displayed")
-    public FormFlow verifySelectedItemIsDisplayed(String expectedValue) {
+    public FormsFlow verifySelectedItemIsDisplayed(String expectedValue) {
         String actualItemValue = formPage.dropDownInputFieldElem().getText();
         Assert.assertEquals(actualItemValue, expectedValue);
         return this;
     }
 
     @Step("Tap On Active Button")
-    public FormFlow tapOnActiveButton() {
+    public FormsFlow tapOnActiveButton() {
         activeBtnDialogComp = formPage.clickOnActiveBtn();
         return this;
     }
 
     @Step("Verify Active Dialog Display and Texts Are Correct")
-    public FormFlow verifyActiveDialogIsDisplayed() {
+    public FormsFlow verifyActiveDialogIsDisplayed() {
         String actualDialogTitle = activeBtnDialogComp.dialogTitleElem().getText();
         String actualDialogMessage = activeBtnDialogComp.dialogMessageElem().getText();
         String expectedDialogTitle = expectedStringMap.get("active_dialog_title");

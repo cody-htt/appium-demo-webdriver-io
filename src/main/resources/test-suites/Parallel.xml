@@ -8,7 +8,8 @@
         <classes>
 <!--            <class name="test.home.HomeTest"/>-->
 <!--            <class name="test.authentication.LoginTest"/>-->
-            <class name="test.form.FormScreenTest"/>
+<!--            <class name="test.form.FormScreenTest"/>-->
+            <class name="test.swipe.SwipeScreenTest"/>
         </classes>
     </test>
 <!--    <test name="Login Test | emulator-5554">-->

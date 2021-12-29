@@ -26,7 +26,7 @@ public class HomeFlow {
         if (homePage == null) {
             initHomePage();
         }
-        // Init Bottom Nav Comp and Navigate to Login Page
+        // Init Bottom Nav Comp and Navigate to Home Page
         BottomNavBarComponent bottomNavBarComp = homePage.bottomNavBarComponent();
         bottomNavBarComp.clickOnHomeLabel();
         return this;

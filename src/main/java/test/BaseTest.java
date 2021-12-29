@@ -81,7 +81,7 @@ public class BaseTest {
             // 3. Declare the file name
 
             // 4. Save the screenshot to the system
-            File screenShot = driverThread.get().getAppiumDriver().getScreenshotAs(OutputType.FILE);
+            File screenShot = getDriver().getScreenshotAs(OutputType.FILE);
 
             try {
                 FileUtils.copyFile(screenShot, new File(fileLocation.trim()));

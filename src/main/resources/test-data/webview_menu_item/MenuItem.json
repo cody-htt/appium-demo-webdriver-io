@@ -1,0 +1,30 @@
+[
+  {
+    "label": "Docs",
+    "href": "/docs/gettingstarted"
+  },
+  {
+    "label": "API",
+    "href": "/docs/api"
+  },
+  {
+    "label": "Blog",
+    "href": "/blog"
+  },
+  {
+    "label": "Contribute",
+    "href": "/docs/contribute"
+  },
+  {
+    "label": "Community",
+    "href": "/community/support"
+  },
+  {
+    "label": "v7",
+    "href": "/versions"
+  },
+  {
+    "label": "Github Logo",
+    "href": " https://github.com/webdriverio/webdriverio"
+  }
+]

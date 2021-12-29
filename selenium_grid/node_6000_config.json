@@ -1,25 +1,25 @@
 {
   "capabilities": [
     {
-      "version": "9",
+      "version": "7.1.1",
       "maxInstances": 1,
       "platform": "ANDROID",
-      "deviceName": "Samsung J7",
-      "udid": "3300d3672cca62b9"
+      "deviceName": "Z5 Prem",
+      "udid": "CB5A2BZKHF"
     }
   ],
   "configuration": {
     "cleanUpCycle": 2000,
     "timeout": 30000,
     "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-    "url": "http://192.168.1.202:6000/wd/hub",
-    "host": "192.168.1.202",
+    "url": "http://192.168.0.12:6000/wd/hub",
+    "host": "192.168.0.12",
     "port": 6000,
     "maxSession": 1,
     "register": true,
     "registerCycle": 5000,
     "hubPort": 4444,
-    "hubHost": "192.168.1.202",
+    "hubHost": "192.168.0.12",
     "hubProtocol": "http"
   }
 }

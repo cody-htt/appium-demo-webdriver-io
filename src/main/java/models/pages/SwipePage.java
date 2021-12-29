@@ -79,7 +79,7 @@ public class SwipePage extends BasePage {
     }
 
     public void swipeToWebDriverIOLogo() {
-        swipeUtils.swipeUpUntilElementFound(webDriverIOLogoLoc, 0.72);
+        swipeUtils.swipeUpUntilElementFound(webDriverIOLogoLoc, 0.73);
     }
 
 }

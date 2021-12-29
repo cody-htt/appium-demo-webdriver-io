@@ -41,4 +41,10 @@
     <!-- Expected Card Logo Title -->
     <string name="logo_title">You found me!!!</string>
     <!-- End Swipe Page Text -->
+
+    <!-- Webview Page Text
+   Expected Card Title and Text Description -->
+    <string name="webview_page_header">Next-gen browser and mobile automation test framework for Node.js</string>
+    <!-- End Swipe Page Text -->
+
 </resource>

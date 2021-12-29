@@ -6,7 +6,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
 import models.components.authentication.LoginFormComponent;
 import models.components.authentication.SignUpFormComponent;
-import models.components.global.BottomNavBarComponent;
 
 public class LoginPage extends BasePage {
 

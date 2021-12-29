@@ -23,7 +23,6 @@ public class LeftNavBarComponent extends BasePage {
 
     public LeftNavBarComponent(AppiumDriver<MobileElement> appiumDriver) {
         super(appiumDriver);
-        appiumDriver.context(Context.WEBVIEW.getContext());
     }
 
     public MobileElement viewModeToggleBtnElem() {

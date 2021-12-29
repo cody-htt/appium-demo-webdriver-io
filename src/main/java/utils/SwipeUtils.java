@@ -253,7 +253,7 @@ public class SwipeUtils {
 
     /* Common method */
     private void swipeUntilElementFound(By locator, PointOption startPoint, PointOption endPoint) {
-        int shortWaitTime = 800;
+        int shortWaitTime = 1000;
         boolean continueToSwipe = true;
         while (continueToSwipe) {
             performSwipe(startPoint, endPoint, shortWaitTime);

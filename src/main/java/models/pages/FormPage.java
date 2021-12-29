@@ -6,7 +6,6 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import models.components.forms_comp.ActiveBtnDialogComponent;
 import models.components.forms_comp.DropdownDialogComponent;
-import models.components.global.BottomNavBarComponent;
 import org.openqa.selenium.By;
 import utils.SwipeUtils;
 

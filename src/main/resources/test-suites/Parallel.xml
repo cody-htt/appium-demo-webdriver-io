@@ -6,18 +6,23 @@
         <parameter name="port" value="7000"/>
         <parameter name="systemPort" value="8300"/>
         <classes>
-<!--            <class name="test.home.HomeTest"/>-->
-<!--            <class name="test.authentication.LoginTest"/>-->
-<!--            <class name="test.form.FormScreenTest"/>-->
+            <class name="test.home.HomeScreenTest"/>
+            <class name="test.authentication.LoginScreenTest"/>
+            <class name="test.form.FormScreenTest"/>
             <class name="test.swipe.SwipeScreenTest"/>
+<!--            <class name="test.webview.WebviewTest"/>-->
         </classes>
     </test>
-<!--    <test name="Login Test | emulator-5554">-->
-<!--        <parameter name="udid" value="emulator-5554"/>-->
-<!--        <parameter name="port" value="8000"/>-->
-<!--        <parameter name="systemPort" value="8301"/>-->
-<!--        <classes>-->
-<!--            <class name="test.authentication.LoginTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Login Test | emulator-5554">
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="port" value="8000"/>
+        <parameter name="systemPort" value="8301"/>
+        <classes>
+            <class name="test.home.HomeScreenTest"/>
+            <class name="test.authentication.LoginScreenTest"/>
+            <class name="test.form.FormScreenTest"/>
+            <class name="test.swipe.SwipeScreenTest"/>
+<!--            <class name="test.webview.WebviewTest"/>-->
+        </classes>
+    </test>
 </suite>

@@ -6,7 +6,6 @@ import io.qameta.allure.Step;
 import models.components.global.BottomNavBarComponent;
 import models.pages.HomePage;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
 import utils.TestUtils;
 
 import java.util.HashMap;

@@ -3,19 +3,25 @@ package test_flows.form;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
+import models.components.forms_comp.DropdownDialogComponent;
 import models.components.global.BottomNavBarComponent;
 import models.pages.FormPage;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import utils.TestUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class FormFlow {
 
+    private final List<String> dropDownListItem = new ArrayList<>();
     private final AppiumDriver<MobileElement> appiumDriver;
     private final HashMap<String, String> expectedStringMap;
     private FormPage formPage;
+    private DropdownDialogComponent dropdownDialogComp;
     private SoftAssert softAssert;
     private TestUtils testUtils;
 
@@ -92,4 +98,26 @@ public class FormFlow {
         }
         return this;
     }
+
+    @Step("Tap and Select Value From Dropdown List")
+    public FormFlow selectValueInDropdown() {
+        dropdownDialogComp = formPage.clickOnDropDownIcon();
+        dropdownDialogComp.dialogListItems().forEach(item -> dropDownListItem.add(item.getText()));
+        return this;
+    }
+
+    @Step("Verify Select Item From Dropdown Is Displayed")
+    public FormFlow verifySelectedItemIsDisplayed(String expectedItemValue) {
+        AtomicInteger indexOfItem = new AtomicInteger(0);
+        dropDownListItem.forEach(item -> {
+            dropdownDialogComp.getItemFromList(indexOfItem.get()).click();
+            String actualItemValue = formPage.dropDownInputFieldElem().getText();
+            Assert.assertEquals(actualItemValue, expectedItemValue);
+            formPage.clickOnDropDownIcon();
+            indexOfItem.incrementAndGet();
+        });
+        return this;
+    }
+
+
 }

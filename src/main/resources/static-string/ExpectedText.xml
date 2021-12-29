@@ -25,6 +25,10 @@
    Expected Switch Btn Text -->
     <string name="switch_on_msg">Click to turn the switch ON</string>
     <string name="switch_off_msg">Click to turn the switch OFF</string>
+    <!-- Dropdown value -->
+    <string name="dropdown_webdriver_io">webdriver.io is awesome</string>
+    <string name="dropdown_appium">Appium is awesome</string>
+    <string name="dropdown_app">This app is awesome</string>
     <!-- End Form Page Text -->
 
 </resource>

@@ -37,8 +37,27 @@ public class FormTest extends BaseTest {
                 .verifyTextDisplayedAsState(state);
     }
 
+    @TmsLink("Form_004")
+    @Description("user can select dropdown webdriverio/appium/this app is awesome")
+    @Test(dataProvider = "dropdownItems", description = "Verify user is able to select item from dropdown")
+    public void verifyItemInDropdownList(String item) {
+        AppiumDriver<MobileElement> appiumDriver = getDriver();
+        FormFlow formFlow = new FormFlow(appiumDriver);
+        formFlow
+                .selectValueInDropdown()
+                .verifySelectedItemIsDisplayed(item);
+    }
+
     @DataProvider
     public Object[][] switchBtnState() {
-        return new Object[][] { { "ON" }, { "OFF" } };
+        return new Object[][] { { "ON" },
+                                { "OFF" } };
+    }
+
+    @DataProvider
+    public Object[][] dropdownItems() {
+        return new Object[][] { { "webdriver.io is awesome" },
+                                { "Appium is awesome" },
+                                { "This app is awesome" } };
     }
 }

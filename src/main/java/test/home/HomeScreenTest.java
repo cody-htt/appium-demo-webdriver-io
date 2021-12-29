@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import test.BaseTest;
 import test_flows.home.HomeFlow;
 
-public class HomeTest extends BaseTest {
+public class HomeScreenTest extends BaseTest {
 
     @TmsLink("HomePage_001")
     @Description("Make sure \"App purpose\" displayed")

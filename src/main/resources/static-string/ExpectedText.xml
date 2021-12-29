@@ -29,6 +29,9 @@
     <string name="dropdown_webdriver_io">webdriver.io is awesome</string>
     <string name="dropdown_appium">Appium is awesome</string>
     <string name="dropdown_app">This app is awesome</string>
+    <!-- Active Dialog Texts -->
+    <string name="active_dialog_title">This button is</string>
+    <string name="active_dialog_msg">This button is active</string>
     <!-- End Form Page Text -->
 
 </resource>

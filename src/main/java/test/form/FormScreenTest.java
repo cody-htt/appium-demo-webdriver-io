@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import test.BaseTest;
 import test_flows.form.FormFlow;
 
-public class FormTest extends BaseTest {
+public class FormScreenTest extends BaseTest {
 
     @TmsLink("Form_001")
     @Description("what user input can be displayed")
@@ -40,12 +40,26 @@ public class FormTest extends BaseTest {
     @TmsLink("Form_004")
     @Description("user can select dropdown webdriverio/appium/this app is awesome")
     @Test(dataProvider = "dropdownItems", description = "Verify user is able to select item from dropdown")
-    public void verifyItemInDropdownList(String item) {
+    public void verifyItemInDropdownList(int indexOfItem, String itemValue) {
         AppiumDriver<MobileElement> appiumDriver = getDriver();
         FormFlow formFlow = new FormFlow(appiumDriver);
         formFlow
-                .selectValueInDropdown()
-                .verifySelectedItemIsDisplayed(item);
+                .navigateToFormsPage()
+                .tapOnDropdownIcon()
+                .selectItemFromDropdown(indexOfItem)
+                .verifySelectedItemIsDisplayed(itemValue);
+    }
+
+    @TmsLink("Form_005")
+    @Description("Active/Inactive button works properly")
+    @Test(description = "Verify Active Button is Clickable and Texts are displayed correctly")
+    public void verifyActiveButtonIsWorking() {
+        AppiumDriver<MobileElement> appiumDriver = getDriver();
+        FormFlow formFlow = new FormFlow(appiumDriver);
+        formFlow
+                .navigateToFormsPage()
+                .tapOnActiveButton()
+                .verifyActiveDialogIsDisplayed();
     }
 
     @DataProvider
@@ -56,8 +70,10 @@ public class FormTest extends BaseTest {
 
     @DataProvider
     public Object[][] dropdownItems() {
-        return new Object[][] { { "webdriver.io is awesome" },
-                                { "Appium is awesome" },
-                                { "This app is awesome" } };
+        return new Object[][] {
+                new Object[] { 1, "webdriver.io is awesome" },
+                new Object[] { 2, "Appium is awesome" },
+                new Object[] { 3, "This app is awesome" }
+        };
     }
 }

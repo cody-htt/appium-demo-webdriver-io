@@ -10,9 +10,9 @@ public class ActiveBtnDialogComponent extends BasePage {
     @AndroidFindBy(xpath = "//*[@resource-id='android:id/parentPanel']")
     private MobileElement activeParentPanelElem;
     @AndroidFindBy(id = "android:id/alertTitle")
-    private MobileElement alertTitleElem;
+    private MobileElement dialogTitleElem;
     @AndroidFindBy(id = "android:id/message")
-    private MobileElement alertMessageElem;
+    private MobileElement dialogMessageElem;
     @AndroidFindBy(id = "android:id/button3")
     private MobileElement askMeLaterBtnElem;
     @AndroidFindBy(id = "android:id/button2")
@@ -29,14 +29,14 @@ public class ActiveBtnDialogComponent extends BasePage {
         return activeParentPanelElem;
     }
 
-    public MobileElement alertTitleElem() {
-        waitForVisibility(alertTitleElem);
-        return alertTitleElem;
+    public MobileElement dialogTitleElem() {
+        waitForVisibility(dialogTitleElem);
+        return dialogTitleElem;
     }
 
-    public MobileElement alertMessageElem() {
-        waitForVisibility(alertMessageElem);
-        return alertMessageElem;
+    public MobileElement dialogMessageElem() {
+        waitForVisibility(dialogMessageElem);
+        return dialogMessageElem;
     }
 
     public MobileElement askMeLaterBtnElem() {

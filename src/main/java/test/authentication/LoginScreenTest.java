@@ -11,7 +11,7 @@ import test_data.DataObjectBuilder;
 import test_data.authentication.LoginCreds;
 import test_flows.authentication.LoginFlow;
 
-public class LoginTest extends BaseTest {
+public class LoginScreenTest extends BaseTest {
 
     @TmsLink("Login_001")
     @TmsLink("Login_002")

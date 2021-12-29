@@ -3,6 +3,7 @@ package test_flows.form;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
+import models.components.forms_comp.ActiveBtnDialogComponent;
 import models.components.forms_comp.DropdownDialogComponent;
 import models.components.global.BottomNavBarComponent;
 import models.pages.FormPage;
@@ -13,7 +14,6 @@ import utils.TestUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class FormFlow {
 
@@ -22,14 +22,13 @@ public class FormFlow {
     private final HashMap<String, String> expectedStringMap;
     private FormPage formPage;
     private DropdownDialogComponent dropdownDialogComp;
+    private ActiveBtnDialogComponent activeBtnDialogComp;
     private SoftAssert softAssert;
-    private TestUtils testUtils;
 
     public FormFlow(AppiumDriver<MobileElement> appiumDriver) {
         this.appiumDriver = appiumDriver;
         this.expectedStringMap = new TestUtils().getExpectedStringMap();
         this.softAssert = new SoftAssert();
-        this.testUtils = new TestUtils();
     }
 
     public FormFlow navigateToFormsPage() {
@@ -49,7 +48,7 @@ public class FormFlow {
 
     @Step("Enter some text in input field")
     public FormFlow inputRandomText() {
-        formPage.inputField(testUtils.randomStringGenerator());
+        formPage.inputField(new TestUtils().randomStringGenerator());
         return this;
     }
 
@@ -100,24 +99,43 @@ public class FormFlow {
     }
 
     @Step("Tap and Select Value From Dropdown List")
-    public FormFlow selectValueInDropdown() {
+    public FormFlow tapOnDropdownIcon() {
         dropdownDialogComp = formPage.clickOnDropDownIcon();
         dropdownDialogComp.dialogListItems().forEach(item -> dropDownListItem.add(item.getText()));
         return this;
     }
 
-    @Step("Verify Select Item From Dropdown Is Displayed")
-    public FormFlow verifySelectedItemIsDisplayed(String expectedItemValue) {
-        AtomicInteger indexOfItem = new AtomicInteger(0);
-        dropDownListItem.forEach(item -> {
-            dropdownDialogComp.getItemFromList(indexOfItem.get()).click();
-            String actualItemValue = formPage.dropDownInputFieldElem().getText();
-            Assert.assertEquals(actualItemValue, expectedItemValue);
-            formPage.clickOnDropDownIcon();
-            indexOfItem.incrementAndGet();
-        });
+    @Step("Select Item From Dropdown List")
+    public FormFlow selectItemFromDropdown(int index) {
+        dropdownDialogComp.getItemFromList(index).click();
         return this;
     }
 
+    @Step("Verify Select Item From Dropdown Is Displayed")
+    public FormFlow verifySelectedItemIsDisplayed(String expectedValue) {
+        String actualItemValue = formPage.dropDownInputFieldElem().getText();
+        Assert.assertEquals(actualItemValue, expectedValue);
+        return this;
+    }
+
+    @Step("Tap On Active Button")
+    public FormFlow tapOnActiveButton() {
+        activeBtnDialogComp = formPage.clickOnActiveBtn();
+        return this;
+    }
+
+    @Step("Verify Active Dialog Display and Texts Are Correct")
+    public FormFlow verifyActiveDialogIsDisplayed() {
+        String actualDialogTitle = activeBtnDialogComp.dialogTitleElem().getText();
+        String actualDialogMessage = activeBtnDialogComp.dialogMessageElem().getText();
+        String expectedDialogTitle = expectedStringMap.get("active_dialog_title");
+        String expectedDialogMessage = expectedStringMap.get("active_dialog_msg");
+
+        Assert.assertEquals(actualDialogTitle, expectedDialogTitle);
+        Assert.assertEquals(actualDialogMessage, expectedDialogMessage);
+
+        activeBtnDialogComp.okBtnElem().click();
+        return this;
+    }
 
 }

@@ -1,16 +1,14 @@
 package test;
 
 import driver.DriverFactory;
+import environments.Context;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import utils.TestUtils;
 
 import java.io.File;
@@ -53,10 +51,18 @@ public class BaseTest {
         return driverThread.get().getAppiumDriver(udid, port, systemPort);
     }
 
+    public String getUdid() {
+        return driverThread.get().getUdid();
+    }
+
     // TODO: this can be enum type
 //    public static AppiumDriver<MobileElement> getDriver(String mobileDriverName){
 //        return driverThread.get().getDriver(browserName);
 //    }
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod() {
+        getDriver().context(Context.NATIVE.getContext());
+    }
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod(ITestResult result) {

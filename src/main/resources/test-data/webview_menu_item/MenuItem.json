@@ -1,30 +1,30 @@
 [
   {
     "label": "Docs",
-    "href": "/docs/gettingstarted"
+    "href": "https://webdriver.io/docs/gettingstarted"
   },
   {
     "label": "API",
-    "href": "/docs/api"
+    "href": "https://webdriver.io/docs/api"
   },
   {
     "label": "Blog",
-    "href": "/blog"
+    "href": "https://webdriver.io/blog"
   },
   {
     "label": "Contribute",
-    "href": "/docs/contribute"
+    "href": "https://webdriver.io/docs/contribute"
   },
   {
     "label": "Community",
-    "href": "/community/support"
+    "href": "https://webdriver.io/community/support"
   },
   {
     "label": "v7",
-    "href": "/versions"
+    "href": "https://webdriver.io/versions"
   },
   {
     "label": "Github Logo",
-    "href": " https://github.com/webdriverio/webdriverio"
+    "href": "https://github.com/webdriverio/webdriverio"
   }
 ]

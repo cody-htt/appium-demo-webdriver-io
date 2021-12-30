@@ -22,7 +22,7 @@ public class SwipePage extends BasePage {
     @AndroidFindBy(xpath = "//*[@content-desc='WebdriverIO logo']/following-sibling::android.widget.TextView")
     private MobileElement webDriverIOLogoTextElem;
 
-    private By webDriverIOLogoLoc = MobileBy.AccessibilityId("WebdriverIO logo");
+    private By webDriverIOLogoTextLoc = MobileBy.xpath("//*[@content-desc='WebdriverIO logo']/following-sibling::android.widget.TextView");
 
     private final SwipeUtils swipeUtils;
 
@@ -44,7 +44,6 @@ public class SwipePage extends BasePage {
     public MobileElement firstCardTextElem() {
         return firstCardTextContainerElem.findElement(By.xpath("//android.widget.TextView[2]"));
     }
-
 
     public MobileElement centerCardTitleElem() {
         return centerCardTextContainerElem.findElement(By.xpath("//android.widget.TextView[1]"));
@@ -79,7 +78,7 @@ public class SwipePage extends BasePage {
     }
 
     public void swipeToWebDriverIOLogo() {
-        swipeUtils.swipeUpUntilElementFound(webDriverIOLogoLoc, 0.73);
+        swipeUtils.swipeUpUntilElementFound(webDriverIOLogoTextLoc, 0.7);
     }
 
 }

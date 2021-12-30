@@ -16,11 +16,18 @@ public class DriverFactory {
 
     private AppiumDriver<MobileElement> appiumDriver;
     private AppiumDriverLocalService appiumServer;
+    private String udid;
 
     public AppiumDriver<MobileElement> getAppiumDriver(String udid, String port, String systemPort) {
-        if (appiumDriver == null)
+        if (appiumDriver == null) {
             appiumDriver = initAppiumDriver(udid, port, systemPort);
+            this.udid = udid;
+        }
         return appiumDriver;
+    }
+
+    public String getUdid() {
+        return udid;
     }
 
     private AppiumDriver<MobileElement> initAppiumDriver(String udid, String port, String systemPort) {

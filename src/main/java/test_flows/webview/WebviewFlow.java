@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class WebviewFlow {
 
@@ -33,16 +35,13 @@ public class WebviewFlow {
     }
 
     public WebviewFlow navigateToWebviewPage() {
+//        changeDriverToNative();
         BottomNavBarComponent bottomNavBarComp = new BottomNavBarComponent(appiumDriver);
-        if (webviewPage != null) {
-            appiumDriver.context(Context.NATIVE.getContext());
-            bottomNavBarComp.clickOnWebviewLabel();
-            appiumDriver.context(Context.WEBVIEW.getContext());
-        }
+        bottomNavBarComp.clickOnWebviewLabel();
         if (webviewPage == null) {
-            bottomNavBarComp.clickOnWebviewLabel();
+            appiumDriver.manage().timeouts().implicitlyWait(3L, TimeUnit.SECONDS);
             initWebviewPage();
-            appiumDriver.context(Context.WEBVIEW.getContext());
+            changeDriverToWebview();
         }
         return this;
     }
@@ -56,6 +55,7 @@ public class WebviewFlow {
     public WebviewFlow verifyWebviewHeader() {
         String actualHeaderText = webviewPage.logoTextFieldElem().getText();
         String expectedHeaderText = expectedStringMap.get("webview_page_header");
+        softAssert.assertTrue(webviewPage.robotLogoElem().isDisplayed());
         softAssert.assertEquals(actualHeaderText, expectedHeaderText);
         softAssert.assertAll();
         return this;
@@ -68,16 +68,28 @@ public class WebviewFlow {
     }
 
     @Step("Verify All Menu Items and Their Hyperlink are displayed")
-    public WebviewFlow verifyMenuItems() {
+    public WebviewFlow verifyMenuItems(String udid) {
         List<WebviewPage.MenuItem> actualMenuItems = fetchMenuItemsToList();
-        List<WebviewPage.MenuItem> expectedMenuItem = convertMenuItemJsonToList();
-        Assert.assertEquals(actualMenuItems, expectedMenuItem);
+        List<WebviewPage.MenuItem> expectedMenuItems = convertMenuItemJsonToList(udid);
+//        if (udid.equalsIgnoreCase("CB5A2BZKHF")) {
+//            expectedMenuItems = convertMenuItemJsonToList("/src/main/resources/test-data/webview_menu_item/MenuItem_Only_CB5A2BZKHF.json");
+//        } else {
+//            expectedMenuItems = convertMenuItemJsonToList("/src/main/resources/test-data/webview_menu_item/MenuItem.json");
+//        }
+        Assert.assertEquals(actualMenuItems.size(), expectedMenuItems.size());
+        AtomicInteger index = new AtomicInteger(0);
+        actualMenuItems.forEach(menuItem -> {
+            WebviewPage.MenuItem expectedMenuItem = expectedMenuItems.get(index.get());
+            softAssert.assertEquals(menuItem.getLabel(), expectedMenuItem.getLabel());
+            softAssert.assertEquals(menuItem.getHref(), expectedMenuItem.getHref());
+            index.incrementAndGet();
+        });
+        softAssert.assertAll();
         return this;
     }
 
     private List<WebviewPage.MenuItem> fetchMenuItemsToList() {
         List<WebviewPage.MenuItem> menuItemsList = new ArrayList<>();
-
         leftNavBarComp.menuItemList().forEach(item -> {
             if (StringUtils.isEmpty(item.getText())) {
                 menuItemsList.add(new WebviewPage.MenuItem("Github Logo", item.getAttribute("href")));
@@ -85,17 +97,33 @@ public class WebviewFlow {
                 menuItemsList.add(new WebviewPage.MenuItem(item.getText(), item.getAttribute("href")));
             }
         });
+        menuItemsList.forEach(System.out :: println);
         return menuItemsList;
     }
 
-    private List<WebviewPage.MenuItem> convertMenuItemJsonToList() {
+    private List<WebviewPage.MenuItem> convertMenuItemJsonToList(String udid) {
         List<WebviewPage.MenuItem> menuItemsList = new ArrayList<>();
         DataObjectBuilder dataObjectBuilder = new DataObjectBuilder();
+        String filePath = "/src/main/resources/test-data/webview_menu_item/MenuItem.json";
+        if (udid.equalsIgnoreCase("CB5A2BZKHF")) {
+            filePath = filePath.replace("MenuItem.json", "MenuItem_Only_CB5A2BZKHF.json") ;
+        }
         Arrays
-                .stream(dataObjectBuilder.buildDataObject("/src/main/resources/test-data/webview_menu_item/MenuItem.json",
-                        WebviewPage.MenuItem[].class))
+                .stream(dataObjectBuilder.buildDataObject(filePath, WebviewPage.MenuItem[].class))
                 .iterator()
                 .forEachRemaining(menuItemsList :: add);
         return menuItemsList;
+    }
+
+    @Step("Change Appium Driver Context To Native")
+    public WebviewFlow changeDriverToNative() {
+        appiumDriver.context(Context.NATIVE.getContext());
+        return this;
+    }
+
+    @Step("Change Appium Driver Context To Web View")
+    public WebviewFlow changeDriverToWebview() {
+        appiumDriver.context(Context.WEBVIEW.getContext());
+        return this;
     }
 }

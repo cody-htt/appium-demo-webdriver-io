@@ -3,9 +3,9 @@ package test_flows.authentication;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Step;
-import models.components.BottomNavBarComponent;
-import models.components.login_page_component.DialogComponent;
-import models.components.login_page_component.SignUpFormComponent;
+import models.components.authentication.DialogComponent;
+import models.components.authentication.SignUpFormComponent;
+import models.components.global.BottomNavBarComponent;
 import models.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -23,11 +23,13 @@ public class SignUpFlow {
     private DialogComponent dialogComp;
     private final HashMap<String, String> expectedStringMap;
     private final SoftAssert softAssert;
+    private SignUpCreds signUpCreds;
 
-    public SignUpFlow(AppiumDriver<MobileElement> appiumDriver) {
+    public SignUpFlow(AppiumDriver<MobileElement> appiumDriver, SignUpCreds signUpCreds) {
         this.appiumDriver = appiumDriver;
         this.expectedStringMap = new TestUtils().getExpectedStringMap();
         softAssert = new SoftAssert();
+        this.signUpCreds = signUpCreds;
     }
 
     public SignUpFlow navigateToLoginPage() {
@@ -38,7 +40,6 @@ public class SignUpFlow {
         // Init Bottom Nav Comp and Navigate to Login Page
         BottomNavBarComponent bottomNavBarComp = loginPage.bottomNavBarComponent();
         bottomNavBarComp.clickOnLoginLabel();
-        loginPage.selectSignUpForm();
         return this;
     }
 
@@ -48,7 +49,8 @@ public class SignUpFlow {
     }
 
     @Step("Input email={signUpCreds.email} | password={signUpCreds.password} | confirm-password={signUpCreds.repeatPassword}")
-    public SignUpFlow signUp(SignUpCreds signUpCreds) {
+    public SignUpFlow signUp() {
+        loginPage.selectSignUpForm();
         if (loginPage == null) { throw new RuntimeException("Please use navigateToLoginPage() first!!!"); }
         // Fill in Sign Up form
         dialogComp = signUpFormComp.inputEmailField(signUpCreds.getEmail())
@@ -75,7 +77,7 @@ public class SignUpFlow {
     }
 
     @Step("Verify unsuccessfully login with valid credentials")
-    public SignUpFlow verifyLoginWithIncorrectCreds(SignUpCreds signUpCreds) {
+    public SignUpFlow verifyLoginWithIncorrectCreds() {
         String actualErrorText;
         String expectedEmailErrMessage = expectedStringMap.get("error_sign_up_invalid_email_msg");
         String expectedPasswordErrMessage = expectedStringMap.get("error_sign_up_invalid_password_msg");

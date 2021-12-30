@@ -10,7 +10,7 @@ import test_data.DataObjectBuilder;
 import test_data.authentication.SignUpCreds;
 import test_flows.authentication.SignUpFlow;
 
-public class SignUpTest extends BaseTest {
+public class SignUpScreenTest extends BaseTest {
 
     @Description("Verify Successfully Sign Up With Valid Credentials")
     @Test(dataProvider = "validLoginCreds", description = "Test Sign Up", priority = 2)
@@ -23,7 +23,7 @@ public class SignUpTest extends BaseTest {
                   .verifyLoginWithCorrectCreds();
     }
 
-    @Test(dataProvider = "invalidLoginCreds", description = "Test Sign Up", priority = 1)
+    @Test(dataProvider = "invalidLoginCreds", description = "Test Sign Up")
     public void signUpWithInvalidCreds(SignUpCreds signUpCreds) {
         //Init Appium driver
         AppiumDriver<MobileElement> androidDriver = getDriver();
@@ -36,13 +36,13 @@ public class SignUpTest extends BaseTest {
 
     @DataProvider
     public SignUpCreds[] invalidLoginCreds() {
-        String jsonLoc = "src/test/resources/data/authentication/invalidSignUpCreds.json";
+        String jsonLoc = "/src/main/resources/test-data/authentication/invalidSignUpCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, SignUpCreds[].class);
     }
 
     @DataProvider
     public SignUpCreds[] validLoginCreds() {
-        String jsonLoc = "src/test/resources/data/authentication/validSignUpCreds.json";
+        String jsonLoc = "/src/main/resources/test-data/authentication/validSignUpCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, SignUpCreds[].class);
     }
 

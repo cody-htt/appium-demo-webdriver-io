@@ -17,26 +17,26 @@ public class LoginScreenTest extends BaseTest {
     @TmsLink("Login_002")
     @TmsLink("Login_003")
     @Description("Test login with data driven...")
-    @Test(dataProvider = "invalidLoginCredsData", description = "Login Test", priority = 1)
+    @Test(dataProvider = "invalidLoginCredsData", description = "Login Test")
     public void loginWithIncorrectCreds(LoginCreds loginCreds) {
         // Init driver
         AppiumDriver<MobileElement> androidDriver = getDriver();
-        LoginFlow loginFlow = new LoginFlow(androidDriver);
+        LoginFlow loginFlow = new LoginFlow(androidDriver, loginCreds);
         loginFlow.navigateToLoginPage()
-                 .login(loginCreds)
-                 .verifyLoginFail(loginCreds);
+                 .login()
+                 .verifyLoginFail();
     }
 
     @TmsLink("Login_004")
     @Description("Test login with correct creds...")
-    @Test(dataProvider = "validLoginCredsData",description = "Login Test", priority = 2)
+    @Test(dataProvider = "validLoginCredsData",description = "Login Test")
     public void loginWithCorrectCreds(LoginCreds loginCreds) {
         // Init driver
         AppiumDriver<MobileElement> androidDriver = getDriver();
-        LoginFlow loginFlow = new LoginFlow(androidDriver);
+        LoginFlow loginFlow = new LoginFlow(androidDriver, loginCreds);
         loginFlow.navigateToLoginPage()
-                 .login(loginCreds)
-                 .verifyLoginSuccesful();
+                 .login()
+                 .verifyLoginSuccessful();
     }
 
     @DataProvider

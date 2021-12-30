@@ -1,28 +1,30 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Regression" parallel="tests" thread-count="4">
-    <test name="Login Test | CB5A2BZKHF">
+    <test name="Executing On CB5A2BZKHF">
         <parameter name="udid" value="CB5A2BZKHF"/>
         <parameter name="port" value="7000"/>
         <parameter name="systemPort" value="8300"/>
         <classes>
             <class name="test.home.HomeScreenTest"/>
             <class name="test.authentication.LoginScreenTest"/>
+            <class name="test.authentication.SignUpScreenTest"/>
             <class name="test.form.FormScreenTest"/>
             <class name="test.swipe.SwipeScreenTest"/>
-<!--            <class name="test.webview.WebviewTest"/>-->
+            <class name="test.webview.WebviewTest"/>
         </classes>
     </test>
-    <test name="Login Test | emulator-5554">
+    <test name="Executing On emulator-5554">
         <parameter name="udid" value="emulator-5554"/>
         <parameter name="port" value="8000"/>
         <parameter name="systemPort" value="8301"/>
         <classes>
             <class name="test.home.HomeScreenTest"/>
             <class name="test.authentication.LoginScreenTest"/>
+            <class name="test.authentication.SignUpScreenTest"/>
             <class name="test.form.FormScreenTest"/>
             <class name="test.swipe.SwipeScreenTest"/>
-<!--            <class name="test.webview.WebviewTest"/>-->
+            <class name="test.webview.WebviewTest"/>
         </classes>
     </test>
 </suite>

@@ -23,11 +23,13 @@ public class LoginFlow {
     private DialogComponent dialogComp;
     private final HashMap<String, String> expectedStringMap;
     private final SoftAssert softAssert;
+    private final LoginCreds loginCreds;
 
-    public LoginFlow(AppiumDriver<MobileElement> appiumDriver) {
+    public LoginFlow(AppiumDriver<MobileElement> appiumDriver, LoginCreds loginCreds) {
         this.appiumDriver = appiumDriver;
         this.expectedStringMap = new TestUtils().getExpectedStringMap();
         this.softAssert = new SoftAssert();
+        this.loginCreds = loginCreds;
     }
 
     public LoginFlow navigateToLoginPage() {
@@ -47,7 +49,7 @@ public class LoginFlow {
     }
 
     @Step("Input email as {loginCreds.email} and password as {loginCreds.password}")
-    public LoginFlow login(LoginCreds loginCreds) {
+    public LoginFlow login() {
         if (loginPage == null) { throw new RuntimeException("Please use navigateToLoginPage() first!!!"); }
         // Fill Login form
         dialogComp = loginFormComp.inputEmailField(loginCreds.getEmail())
@@ -57,7 +59,7 @@ public class LoginFlow {
     }
 
     @Step("Verify successfully login with valid credentials")
-    public LoginFlow verifyLoginSuccesful() {
+    public LoginFlow verifyLoginSuccessful() {
         // Verification
         String actualDialogTitle = dialogComp.dialogTitleElem().getText();
         String actualDialogMessage = dialogComp.dialogMessageElem().getText();
@@ -73,7 +75,7 @@ public class LoginFlow {
     }
 
     @Step("Verify unsuccessfully login with valid credentials")
-    public LoginFlow verifyLoginFail(LoginCreds loginCreds) {
+    public LoginFlow verifyLoginFail() {
         //Verification
         String actualErrorText;
         String expectedEmailErrMessage = expectedStringMap.get("error_login_invalid_email_msg");

@@ -97,7 +97,6 @@ public class WebviewFlow {
                 menuItemsList.add(new WebviewPage.MenuItem(item.getText(), item.getAttribute("href")));
             }
         });
-        menuItemsList.forEach(System.out :: println);
         return menuItemsList;
     }
 

@@ -1,0 +1,30 @@
+[
+  {
+    "label": "Docs",
+    "href": "https://webdriver.io/docs/gettingstarted"
+  },
+  {
+    "label": "API",
+    "href": "https://webdriver.io/docs/api"
+  },
+  {
+    "label": "Blog",
+    "href": "https://webdriver.io/blog"
+  },
+  {
+    "label": "Contribute",
+    "href": "https://webdriver.io/docs/contribute"
+  },
+  {
+    "label": "Community",
+    "href": "https://webdriver.io/community/support"
+  },
+  {
+    "label": "v7",
+    "href": "https://webdriver.io/versions"
+  },
+  {
+    "label": "Github Logo",
+    "href": "https://github.com/webdriverio/webdriverio"
+  }
+]

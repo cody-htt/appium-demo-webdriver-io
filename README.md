@@ -54,6 +54,13 @@ mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/test-suites/Regressio
 * Login_003: Make sure "missing password" displayed
 * Login_004: User can login with correct creds
 
+## Sign Up
+* SignUp_001: Make sure "missing email and password" displayed
+* SignUp_002: Make sure "missing email" displayed
+* SignUp_003: Make sure "missing password" displayed
+* SignUp_004: Make sure "confirm password is not matched" displayed
+* SignUp_005: User can sign up with correct creds
+
 ## Form
 * Form_001: what user input can be displayed
 * Form_002: user can switch on/off and text displayed

@@ -1,6 +1,5 @@
 package models.components.webview_comp;
 
-import environments.Context;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;

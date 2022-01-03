@@ -71,11 +71,6 @@ public class WebviewFlow {
     public WebviewFlow verifyMenuItems(String udid) {
         List<WebviewPage.MenuItem> actualMenuItems = fetchMenuItemsToList();
         List<WebviewPage.MenuItem> expectedMenuItems = convertMenuItemJsonToList(udid);
-//        if (udid.equalsIgnoreCase("CB5A2BZKHF")) {
-//            expectedMenuItems = convertMenuItemJsonToList("/src/main/resources/test-data/webview_menu_item/MenuItem_Only_CB5A2BZKHF.json");
-//        } else {
-//            expectedMenuItems = convertMenuItemJsonToList("/src/main/resources/test-data/webview_menu_item/MenuItem.json");
-//        }
         Assert.assertEquals(actualMenuItems.size(), expectedMenuItems.size());
         AtomicInteger index = new AtomicInteger(0);
         actualMenuItems.forEach(menuItem -> {

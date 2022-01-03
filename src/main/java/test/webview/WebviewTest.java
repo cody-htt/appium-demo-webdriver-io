@@ -1,6 +1,5 @@
 package test.webview;
 
-import environments.Context;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.qameta.allure.Description;

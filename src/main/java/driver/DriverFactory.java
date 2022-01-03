@@ -18,9 +18,9 @@ public class DriverFactory {
     private AppiumDriverLocalService appiumServer;
     private String udid;
 
-    public AppiumDriver<MobileElement> getAppiumDriver(String udid, String port, String systemPort) {
+    public AppiumDriver<MobileElement> getAppiumDriver(String udid, String port, String systemPort, String chromedriverPort) {
         if (appiumDriver == null) {
-            appiumDriver = initAppiumDriver(udid, port, systemPort);
+            appiumDriver = initAppiumDriver(udid, port, systemPort, chromedriverPort);
             this.udid = udid;
         }
         return appiumDriver;
@@ -30,12 +30,13 @@ public class DriverFactory {
         return udid;
     }
 
-    private AppiumDriver<MobileElement> initAppiumDriver(String udid, String port, String systemPort) {
+    private AppiumDriver<MobileElement> initAppiumDriver(String udid, String port, String systemPort, String chromedriverPort) {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.PLATFORM_NAME, "Android");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.AUTOMATION_NAME, "uiautomator2");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.UDID, udid);
-        desiredCapabilities.setCapability("systemPort", Integer.parseInt(systemPort));
+        desiredCapabilities.setCapability(MobileCapabilityTypeEx.SYSTEM_PORT, Integer.parseInt(systemPort));
+        desiredCapabilities.setCapability(MobileCapabilityTypeEx.CHROME_DRIVER_PORT, Integer.parseInt(chromedriverPort));
 //        desiredCapabilities.setCapability("mjpegServerPort", Integer.parseInt(port));
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.APP_PACKAGE, "com.wdiodemoapp");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.APP_ACTIVITY, "com.wdiodemoapp.MainActivity");

@@ -5,6 +5,7 @@
         <parameter name="udid" value="CB5A2BZKHF"/>
         <parameter name="port" value="7000"/>
         <parameter name="systemPort" value="8300"/>
+        <parameter name="chromedriverPort" value="8500"/>
         <classes>
             <class name="test.home.HomeScreenTest"/>
             <class name="test.authentication.LoginScreenTest"/>
@@ -18,6 +19,21 @@
         <parameter name="udid" value="emulator-5554"/>
         <parameter name="port" value="8000"/>
         <parameter name="systemPort" value="8301"/>
+        <parameter name="chromedriverPort" value="8501"/>
+        <classes>
+            <class name="test.home.HomeScreenTest"/>
+            <class name="test.authentication.LoginScreenTest"/>
+            <class name="test.authentication.SignUpScreenTest"/>
+            <class name="test.form.FormScreenTest"/>
+            <class name="test.swipe.SwipeScreenTest"/>
+            <class name="test.webview.WebviewTest"/>
+        </classes>
+    </test>
+    <test name="Executing On emulator-5556">
+        <parameter name="udid" value="emulator-5556"/>
+        <parameter name="port" value="8001"/>
+        <parameter name="systemPort" value="8302"/>
+        <parameter name="chromedriverPort" value="8502"/>
         <classes>
             <class name="test.home.HomeScreenTest"/>
             <class name="test.authentication.LoginScreenTest"/>

@@ -27,14 +27,16 @@ public class BaseTest {
     private String udid;
     private String port;
     private String systemPort;
+    private String chromedriverPort;
 
     @BeforeTest(alwaysRun = true)
-    @Parameters({"udid", "port", "systemPort"})
-    public void beforeTest(String udid, String port, String systemPort) {
+    @Parameters({ "udid", "port", "systemPort", "chromedriverPort" })
+    public void beforeTest(String udid, String port, String systemPort, String chromedriverPort) {
         System.out.println(udid + "|" + port + "|" + systemPort);
         this.udid = udid;
         this.port = port;
         this.systemPort = systemPort;
+        this.chromedriverPort = chromedriverPort;
         driverThread = ThreadLocal.withInitial(() -> {
             DriverFactory driverThread = new DriverFactory();
             driverThreadPool.add(driverThread);
@@ -48,7 +50,7 @@ public class BaseTest {
     }
 
     public AppiumDriver<MobileElement> getDriver() {
-        return driverThread.get().getAppiumDriver(udid, port, systemPort);
+        return driverThread.get().getAppiumDriver(udid, port, systemPort, chromedriverPort);
     }
 
     public String getUdid() {
@@ -56,9 +58,7 @@ public class BaseTest {
     }
 
     // TODO: this can be enum type
-//    public static AppiumDriver<MobileElement> getDriver(String mobileDriverName){
-//        return driverThread.get().getDriver(browserName);
-//    }
+
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         getDriver().context(Context.NATIVE.getContext());
@@ -71,15 +71,6 @@ public class BaseTest {
             String testMethodName = result.getName();
 
             // 2. Declare the file location
-//            Calendar calendar = new GregorianCalendar();
-//            int y = calendar.get(Calendar.YEAR);
-//            int m = calendar.get(Calendar.MONTH);
-//            int d = calendar.get(Calendar.DATE);
-//            int hr = calendar.get(Calendar.HOUR_OF_DAY);
-//            int min = calendar.get(Calendar.MINUTE);
-//            int sec = calendar.get(Calendar.SECOND);
-//            String dateTaken = y + "-" + (m + 1) + "-" + d + "-" + hr + "-" + min + "-" + sec;
-//            String fileLocation = System.getProperty("user.dir") + "/screenshot/" + testMethodName + "_"+ dateTaken + ".png";
             TestUtils testUtils = new TestUtils();
             String dateTaken = testUtils.getDateTime();
             String fileLocation = System.getProperty("user.dir") + File.separator + "ScreenShot" + File.separator + testMethodName + "_" + dateTaken + ".png";

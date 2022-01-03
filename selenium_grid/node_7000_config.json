@@ -6,13 +6,6 @@
       "platform": "ANDROID",
       "deviceName": "Pixel_3",
       "udid": "emulator-5554"
-    },
-    {
-      "version": "11",
-      "maxInstances": 1,
-      "platform": "ANDROID",
-      "deviceName": "Pixel_4a",
-      "udid": "emulator-5556"
     }
   ],
   "configuration": {

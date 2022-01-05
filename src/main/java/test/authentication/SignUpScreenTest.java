@@ -42,13 +42,19 @@ public class SignUpScreenTest extends BaseTest {
 
     @DataProvider
     public SignUpCreds[] invalidLoginCreds() {
-        String jsonLoc = "/src/main/resources/test-data/authentication/invalidSignUpCreds.json";
+        /* Use this path to run directly in IntelliJ
+         * String jsonLoc = "/src/main/resources/test-data/authentication/invalidSignUpCreds.json";
+         * The following path is used when executing test with Jar file */
+        String jsonLoc = "test-data/authentication/invalidSignUpCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, SignUpCreds[].class);
     }
 
     @DataProvider
     public SignUpCreds[] validLoginCreds() {
-        String jsonLoc = "/src/main/resources/test-data/authentication/validSignUpCreds.json";
+        /* Use this path to run directly in IntelliJ
+         * String jsonLoc = "/src/main/resources/test-data/authentication/validSignUpCreds.json";
+         * The following path is used when executing test with Jar file */
+        String jsonLoc = "test-data/authentication/validSignUpCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, SignUpCreds[].class);
     }
 

@@ -41,6 +41,7 @@ public class Main implements MobileCapabilityTypeEx {
         }
 
         /* Get Test Platform */
+//        String platformName = "android";
         String platformName = System.getProperty("platform");
         if (platformName == null) { throw new RuntimeException("Please provide platform"); }
         try {
@@ -87,6 +88,7 @@ public class Main implements MobileCapabilityTypeEx {
             test.addParameter(PLATFORM_NAME, platformName);
             test.addParameter(PLATFORM_VERSION, "test version");
             test.addParameter(SYSTEM_PORT, String.valueOf(new SecureRandom().nextInt(1000) + 8300));
+            test.addParameter(CHROME_DRIVER_PORT, String.valueOf(new SecureRandom().nextInt(1000) + 10000));
 
             // Currently unused ~!!
             test.addParameter(PORT, "0");
@@ -101,6 +103,7 @@ public class Main implements MobileCapabilityTypeEx {
         /* Execute a group of test */
         String targetGroup = args.length != 0 ? args[0] : null;
         if (targetGroup != null) {
+//            suite.addIncludedGroup("smoke");
             suite.addIncludedGroup(targetGroup);
         }
 

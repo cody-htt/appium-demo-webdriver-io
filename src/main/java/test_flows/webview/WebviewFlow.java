@@ -98,12 +98,13 @@ public class WebviewFlow {
     private List<WebviewPage.MenuItem> convertMenuItemJsonToList(String udid) {
         List<WebviewPage.MenuItem> menuItemsList = new ArrayList<>();
         DataObjectBuilder dataObjectBuilder = new DataObjectBuilder();
-        String filePath = "/src/main/resources/test-data/webview_menu_item/MenuItem.json";
+        //String jsonLoc = "/src/main/resources/test-data/webview_menu_item/MenuItem.json";
+        String jsonLoc = "test-data/webview_menu_item/MenuItem.json";
         if (udid.equalsIgnoreCase("CB5A2BZKHF")) {
-            filePath = filePath.replace("MenuItem.json", "MenuItem_Only_CB5A2BZKHF.json");
+            jsonLoc = jsonLoc.replace("MenuItem.json", "MenuItem_Only_CB5A2BZKHF.json");
         }
         Arrays
-                .stream(dataObjectBuilder.buildDataObject(filePath, WebviewPage.MenuItem[].class))
+                .stream(dataObjectBuilder.buildDataObject(jsonLoc, WebviewPage.MenuItem[].class))
                 .iterator()
                 .forEachRemaining(menuItemsList :: add);
         return menuItemsList;

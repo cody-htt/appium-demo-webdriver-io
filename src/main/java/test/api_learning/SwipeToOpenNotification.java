@@ -53,4 +53,9 @@ public class SwipeToOpenNotification extends BaseTest {
                 .perform(); // without this, will be no action at all
 
     }
+
+    @Test(groups = {"smoke"})
+    public void mySmokeTestMethod(){
+        System.out.println("Smoke Test");
+    }
 }

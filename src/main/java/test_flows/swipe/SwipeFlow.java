@@ -71,8 +71,10 @@ public class SwipeFlow {
     private HashMap<String, String> convertCardJsonToMap() {
         HashMap<String, String> cardTextMap = new HashMap<>();
         DataObjectBuilder dataObjectBuilder = new DataObjectBuilder();
+        //String jsonLoc = "/src/main/resources/test-data/swipe_page_card_text/CardText.json";
+        String jsonLoc = "test-data/swipe_page_card_text/CardText.json";
         Arrays
-                .stream(dataObjectBuilder.buildDataObject("/src/main/resources/test-data/swipe_page_card_text/CardText.json",
+                .stream(dataObjectBuilder.buildDataObject(jsonLoc,
                         Card[].class))
                 .iterator()
                 .forEachRemaining(card -> cardTextMap.put(card.getCardTitle(), card.getCardText()));

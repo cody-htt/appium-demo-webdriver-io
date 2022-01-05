@@ -47,6 +47,12 @@ mvn clean install -DskipTests=true
 mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/test-suites/Regression.xml -DotherParam=something
 ```
 
+## Run Jar File
+```
+java -Dhub="http://192.168.0.14" -Dplatform=ios -jar target/appium-maven-k3-1.0-SNAPSHOT-fat-tests.jar [arg0] [arg1]...
+java -Dhub="http://192.168.0.14" -Dplatform=android -jar target/appium-maven-k3-1.0-SNAPSHOT-fat-tests.jar [arg0] [arg1]...
+```
+
 # Test cases
 ## Home Page
 * HomePage_001: Make sure "App purpose" displayed

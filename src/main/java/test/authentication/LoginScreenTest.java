@@ -29,7 +29,7 @@ public class LoginScreenTest extends BaseTest {
 
     @TmsLink("Login_004")
     @Description("Test login with correct creds...")
-    @Test(dataProvider = "validLoginCredsData",description = "Login Test")
+    @Test(dataProvider = "validLoginCredsData", description = "Login Test")
     public void loginWithCorrectCreds(LoginCreds loginCreds) {
         // Init driver
         AppiumDriver<MobileElement> androidDriver = getDriver();
@@ -41,13 +41,19 @@ public class LoginScreenTest extends BaseTest {
 
     @DataProvider
     public LoginCreds[] invalidLoginCredsData() {
-        String jsonLoc = "/src/main/resources/test-data/authentication/invalidLoginCreds.json";
+        /* Use this path to run directly in IntelliJ
+         * String jsonLoc = "/src/main/resources/test-data/authentication/invalidLoginCreds.json";
+         * The following path is used when executing test with Jar file */
+        String jsonLoc = "test-data/authentication/invalidLoginCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, LoginCreds[].class);
     }
 
     @DataProvider
     public LoginCreds[] validLoginCredsData() {
-        String jsonLoc = "/src/main/resources/test-data/authentication/validLoginCreds.json";
+        /* Use this path to run directly in IntelliJ
+         * String jsonLoc = "/src/main/resources/test-data/authentication/validLoginCreds.json";
+         * The following path is used when executing test with Jar file */
+        String jsonLoc = "test-data/authentication/validLoginCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, LoginCreds[].class);
     }
 }

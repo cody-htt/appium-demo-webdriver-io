@@ -40,6 +40,10 @@ adb -s device-udid uninstall io.appium.settings
 
 ## Maven Command
 ```
+--- Trigger Build ---
+mvn clean install -DskipTests=true
+
+--- Trigger Test ---
 mvn clean test -Dsurefire.suiteXmlFiles=src/main/resources/test-suites/Regression.xml -DotherParam=something
 ```
 

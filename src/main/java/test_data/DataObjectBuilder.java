@@ -1,25 +1,31 @@
 package test_data;
 
 import com.google.gson.Gson;
+import org.apache.commons.io.FileUtils;
 
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class DataObjectBuilder {
 
     public <T> T buildDataObject(String filePath, Class<T> dataType) {
-        String absoluteFilePath = System.getProperty("user.dir") + filePath;
-        try (
-                Reader reader = Files.newBufferedReader(Paths.get(absoluteFilePath))
-        ) {
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader bufferedReader;
+        InputStream is = FileUtils.class.getResourceAsStream(filePath);
+        String line;
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(is));
+            while (null != (line = bufferedReader.readLine())) {
+                stringBuilder.append(line);
+            }
             // Create Gson instance
             Gson gson = new Gson();
 
             // Convert json array data into loginCreds []
-            return gson.fromJson(reader, dataType);
-        } catch (Exception e) {
-            e.printStackTrace();
+            return gson.fromJson(stringBuilder.toString(), dataType);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
         return null;

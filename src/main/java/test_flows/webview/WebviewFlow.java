@@ -100,7 +100,7 @@ public class WebviewFlow {
         DataObjectBuilder dataObjectBuilder = new DataObjectBuilder();
         String filePath = "/src/main/resources/test-data/webview_menu_item/MenuItem.json";
         if (udid.equalsIgnoreCase("CB5A2BZKHF")) {
-            filePath = filePath.replace("MenuItem.json", "MenuItem_Only_CB5A2BZKHF.json") ;
+            filePath = filePath.replace("MenuItem.json", "MenuItem_Only_CB5A2BZKHF.json");
         }
         Arrays
                 .stream(dataObjectBuilder.buildDataObject(filePath, WebviewPage.MenuItem[].class))
@@ -109,15 +109,8 @@ public class WebviewFlow {
         return menuItemsList;
     }
 
-    @Step("Change Appium Driver Context To Native")
-    public WebviewFlow changeDriverToNative() {
-        appiumDriver.context(Context.NATIVE.getContext());
-        return this;
-    }
-
     @Step("Change Appium Driver Context To Web View")
-    public WebviewFlow changeDriverToWebview() {
+    public void changeDriverToWebview() {
         appiumDriver.context(Context.WEBVIEW.getContext());
-        return this;
     }
 }

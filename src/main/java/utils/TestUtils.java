@@ -1,6 +1,7 @@
 package utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.w3c.dom.Document;
@@ -16,8 +17,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class TestUtils {
 
@@ -40,6 +43,17 @@ public class TestUtils {
             }
         }
         return null;
+    }
+
+    // Convert Json File to List<String>
+    public List<String> convertJsonToList(String filePath, String objectKey) {
+        List<String> convertedList = new ArrayList<>();
+        JSONObject object = readJSONFile(filePath);
+        JSONArray jsonArray = object.getJSONArray(objectKey);
+        for (int index = 0; index < jsonArray.length(); index++) {
+            convertedList.add(jsonArray.getString(index));
+        }
+        return convertedList;
     }
 
     public HashMap<String, String> getExpectedStringMap() {

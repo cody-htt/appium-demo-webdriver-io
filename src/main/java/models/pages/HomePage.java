@@ -10,8 +10,12 @@ public class HomePage extends BasePage{
 
     @AndroidFindBy(accessibility = "Home-screen")
     private MobileElement homeScreenView;
-    private MobileElement appDescriptionElem = homeScreenView.findElement(By.xpath("//android.view.ViewGroup/android.widget.TextView[2]"));
-    private MobileElement supportChannelElem = homeScreenView.findElement(By.xpath("//android.view.ViewGroup/android.widget.TextView[5]"));
+    @AndroidFindBy(xpath = "//*[@content-desc='Home-screen']/android.view.ViewGroup/android.widget.TextView[2]")
+    private MobileElement appDescriptionElem;
+    @AndroidFindBy(xpath = "//*[@content-desc='Home-screen']/android.view.ViewGroup/android.widget.TextView[5]")
+    private MobileElement supportChannelElem;
+//    private MobileElement appDescriptionElem = homeScreenView.findElement(By.xpath("//android.view.ViewGroup/android.widget.TextView[2]"));
+//    private MobileElement supportChannelElem = homeScreenView.findElement(By.xpath("//android.view.ViewGroup/android.widget.TextView[5]"));
 
     public HomePage(AppiumDriver<MobileElement> appiumDriver) {
         super(appiumDriver);

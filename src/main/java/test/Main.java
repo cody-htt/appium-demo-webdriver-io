@@ -22,6 +22,10 @@ public class Main implements MobileCapabilityTypeEx {
     private static final String TEST_FOLDER = "test.";
     private static final String BASE_TEST_CLASS = "test.BaseTest";
     private static final String MAIN_CLASS = "test.Main";
+    private static final String AUTH = "test.authentication";
+    private static final String FORM = "test.form";
+    private static final String HOME = "test.home";
+    private static final String SWIPE = "test.swipe";
     private static final String DEVICES_LIST = "devices/DevicesList.json";
 
     @SuppressWarnings("UnstableApiUsage")
@@ -34,8 +38,13 @@ public class Main implements MobileCapabilityTypeEx {
         List<Class<?>> testClasses = new ArrayList<>();
         for (final ClassPath.ClassInfo info : ClassPath.from(loader).getTopLevelClasses()) {
             if (info.getName().startsWith(TEST_FOLDER)
-                && !info.getName().equalsIgnoreCase(BASE_TEST_CLASS)
-                && !info.getName().equalsIgnoreCase(MAIN_CLASS)) {
+                && info.getName().startsWith(AUTH)
+                || info.getName().startsWith(FORM)
+                || info.getName().startsWith(HOME)
+                || info.getName().startsWith(SWIPE)
+//                && !info.getName().equalsIgnoreCase(BASE_TEST_CLASS)
+//                && !info.getName().equalsIgnoreCase(MAIN_CLASS)
+            ) {
                 testClasses.add(info.load());
             }
         }

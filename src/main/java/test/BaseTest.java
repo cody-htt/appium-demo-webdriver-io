@@ -32,7 +32,7 @@ public class BaseTest {
     @BeforeTest(alwaysRun = true)
     @Parameters({ "udid", "port", "systemPort", "chromedriverPort" })
     public void beforeTest(String udid, String port, String systemPort, String chromedriverPort) {
-        System.out.println(udid + "|" + port + "|" + systemPort);
+        System.out.println(udid + " | " + port + " | " + systemPort + " | " + chromedriverPort);
         this.udid = udid;
         this.port = port;
         this.systemPort = systemPort;
@@ -59,10 +59,12 @@ public class BaseTest {
 
     // TODO: this can be enum type
 
-    @BeforeMethod(alwaysRun = true)
-    public void beforeMethod() {
-        getDriver().context(Context.NATIVE.getContext());
-    }
+//    @BeforeMethod(alwaysRun = true)
+//    public void beforeMethod() {
+//        System.out.print(this.getClass().getSimpleName() + " - ");
+//        System.out.println(udid + "|" + port + "|" + systemPort + " | " + chromedriverPort);
+//        driverThread.get().getAppiumDriver(udid, port, systemPort, chromedriverPort).context(Context.NATIVE.getContext());
+//    }
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod(ITestResult result) {

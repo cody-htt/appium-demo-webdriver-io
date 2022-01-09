@@ -24,10 +24,12 @@ public class FormsFlow {
     private DropdownDialogComponent dropdownDialogComp;
     private ActiveBtnDialogComponent activeBtnDialogComp;
     private SoftAssert softAssert;
+    private TestUtils testUtils;
 
     public FormsFlow(AppiumDriver<MobileElement> appiumDriver) {
         this.appiumDriver = appiumDriver;
-        this.expectedStringMap = new TestUtils().getExpectedStringMap();
+        this.testUtils =  new TestUtils();
+        this.expectedStringMap = testUtils.getExpectedStringMap();
         this.softAssert = new SoftAssert();
     }
 
@@ -48,7 +50,7 @@ public class FormsFlow {
 
     @Step("Enter some text in input field")
     public FormsFlow inputRandomText() {
-        formPage.inputField(new TestUtils().randomStringGenerator());
+        formPage.inputField(testUtils.randomStringGenerator());
         return this;
     }
 

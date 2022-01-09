@@ -63,9 +63,15 @@ public class Main implements MobileCapabilityTypeEx {
          * Device list can be fetched from anywhere
          */
         TestUtils testUtils = new TestUtils();
+        List<String> deviceList;
         List<String> iPhoneDeviceList = testUtils.convertJsonToList(DEVICES_LIST, "ios");
         List<String> androidDeviceList = testUtils.convertJsonToList(DEVICES_LIST, "android");
-        List<String> deviceList = platformName.equalsIgnoreCase(PlatformType.ios.getName()) ? iPhoneDeviceList : androidDeviceList;
+        /* Temporarily don't have iPhoneDeviceList to run the test */
+        if (!iPhoneDeviceList.isEmpty()) {
+            deviceList = androidDeviceList;
+        } else {
+            deviceList = platformName.equalsIgnoreCase(PlatformType.ios.getName()) ? iPhoneDeviceList : androidDeviceList;
+        }
 
         int testCasesPerDevice = testClasses.size() / deviceList.size();
         HashMap<String, List<Class<?>>> desiredCaps = new HashMap<>();

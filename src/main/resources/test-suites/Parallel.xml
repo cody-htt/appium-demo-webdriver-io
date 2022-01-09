@@ -10,10 +10,9 @@
             <class name="test.home.HomeScreenTest"/>
 <!--            <class name="test.authentication.LoginScreenTest"/>-->
 <!--            <class name="test.authentication.SignUpScreenTest"/>-->
-            <class name="test.form.FormScreenTest"/>
+<!--            <class name="test.form.FormScreenTest"/>-->
             <class name="test.swipe.SwipeScreenTest"/>
-            <class name="test.swipe_to_notification.SwipeToOpenNotification"/>
-<!--            <class name="test.webview.WebviewTest"/>-->
+            <class name="test.webview.WebviewTest"/>
         </classes>
     </test>
     <test name="Executing On emulator-5554">
@@ -25,9 +24,9 @@
 <!--            <class name="test.home.HomeScreenTest"/>-->
             <class name="test.authentication.LoginScreenTest"/>
             <class name="test.authentication.SignUpScreenTest"/>
-<!--            <class name="test.form.FormScreenTest"/>-->
+            <class name="test.form.FormScreenTest"/>
 <!--            <class name="test.swipe.SwipeScreenTest"/>-->
-            <class name="test.webview.WebviewTest"/>
+<!--            <class name="test.webview.WebviewTest"/>-->
         </classes>
     </test>
 </suite>

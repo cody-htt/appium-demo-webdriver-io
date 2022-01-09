@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 public class Main implements MobileCapabilityTypeEx {
 
     private static final String TEST_FOLDER = "test.";
-    private static final String BASE_TEST_CLASS = "test.BaseTest";
-    private static final String MAIN_CLASS = "test.Main";
+//    private static final String BASE_TEST_CLASS = "test.BaseTest";
+//    private static final String MAIN_CLASS = "test.Main";
     private static final String AUTH = "test.authentication";
     private static final String FORM = "test.form";
     private static final String HOME = "test.home";
@@ -63,73 +63,77 @@ public class Main implements MobileCapabilityTypeEx {
          * Device list can be fetched from anywhere
          */
         TestUtils testUtils = new TestUtils();
-        List<String> deviceList;
         List<String> iPhoneDeviceList = testUtils.convertJsonToList(DEVICES_LIST, "ios");
         List<String> androidDeviceList = testUtils.convertJsonToList(DEVICES_LIST, "android");
-        /* Temporarily don't have iPhoneDeviceList to run the test */
-        if (!iPhoneDeviceList.isEmpty()) {
-            deviceList = androidDeviceList;
-        } else {
-            deviceList = platformName.equalsIgnoreCase(PlatformType.ios.getName()) ? iPhoneDeviceList : androidDeviceList;
-        }
+        List<String> deviceList = platformName.equalsIgnoreCase(PlatformType.ios.getName()) ? iPhoneDeviceList : androidDeviceList;
 
-        int testCasesPerDevice = testClasses.size() / deviceList.size();
-        HashMap<String, List<Class<?>>> desiredCaps = new HashMap<>();
-        for (int deviceIndex = 0 ; deviceIndex < deviceList.size() ; deviceIndex++) {
-            int startIndex = deviceIndex * testCasesPerDevice;
-            int endIndex = (deviceIndex == (deviceList.size() - 1)) ? testClasses.size() : (startIndex + testCasesPerDevice);
-            List<Class<?>> subTestList = testClasses.subList(startIndex, endIndex);
-            desiredCaps.put(deviceList.get(deviceIndex), subTestList);
-        }
+        if (!deviceList.isEmpty()) {
+            int testCasesPerDevice = testClasses.size() / deviceList.size();
+            HashMap<String, List<Class<?>>> desiredCaps = new HashMap<>();
+            for (int deviceIndex = 0 ; deviceIndex < deviceList.size() ; deviceIndex++) {
+                int startIndex = deviceIndex * testCasesPerDevice;
+                int endIndex = (deviceIndex == (deviceList.size() - 1)) ? testClasses.size() : (startIndex + testCasesPerDevice);
+                List<Class<?>> subTestList = testClasses.subList(startIndex, endIndex);
+                desiredCaps.put(deviceList.get(deviceIndex), subTestList);
+            }
 
-        /* Build Test Suite Dynamically */
-        TestNG testNG = new TestNG();
-        XmlSuite suite = new XmlSuite();
-        suite.setName("Regression");
+            /* Build Test Suite Dynamically */
+            TestNG testNG = new TestNG();
+            XmlSuite suite = new XmlSuite();
+            suite.setName("Regression");
 
-        /*
-         * Import Test Classes into test suit with
-         * Each device including device's udid, platform, port, systemPort as parameters
-         */
-        List<XmlTest> allTests = new ArrayList<>();
-        desiredCaps.keySet().forEach(deviceUdid -> {
-            XmlTest test = new XmlTest(suite);
-            test.setName("Test on " + deviceUdid);
-            List<Class<?>> dedicatedClasses = desiredCaps.get(deviceUdid);
-            List<XmlClass> xmlClasses;
-            xmlClasses = dedicatedClasses.stream().map(dedicatedClass -> new XmlClass(dedicatedClass.getName())).collect(Collectors.toList());
-            test.setXmlClasses(xmlClasses);
-            test.addParameter(UDID, deviceUdid);
-            test.addParameter(PLATFORM_NAME, platformName);
-            test.addParameter(PLATFORM_VERSION, "test version");
-            test.addParameter(SYSTEM_PORT, String.valueOf(new SecureRandom().nextInt(1000) + 8300));
-            test.addParameter(CHROME_DRIVER_PORT, String.valueOf(new SecureRandom().nextInt(1000) + 10000));
+            /*
+             * Import Test Classes into test suit with
+             * Each device including device's udid, platform, port, systemPort as parameters
+             */
+            List<XmlTest> allTests = new ArrayList<>();
+            desiredCaps.keySet().forEach(deviceUdid -> {
+                XmlTest test = new XmlTest(suite);
+                test.setName("Test on " + deviceUdid);
+                List<Class<?>> dedicatedClasses = desiredCaps.get(deviceUdid);
+                List<XmlClass> xmlClasses;
+                xmlClasses = dedicatedClasses.stream().map(dedicatedClass -> new XmlClass(dedicatedClass.getName())).collect(Collectors.toList());
+                test.setXmlClasses(xmlClasses);
+                test.addParameter(UDID, deviceUdid);
+                test.addParameter(PLATFORM_NAME, platformName);
+                test.addParameter(PLATFORM_VERSION, "test version");
+                test.addParameter(SYSTEM_PORT, String.valueOf(new SecureRandom().nextInt(1000) + 8300));
+                test.addParameter(CHROME_DRIVER_PORT, String.valueOf(new SecureRandom().nextInt(1000) + 10000));
 
-            // Currently unused ~!!
-            test.addParameter(PORT, "0");
-            allTests.add(test);
-        });
+                // Currently unused ~!!
+                test.addParameter(PORT, "0");
+                allTests.add(test);
+            });
 
-        /* Add all test into suite */
-        suite.setTests(allTests);
-        suite.setParallel(XmlSuite.ParallelMode.TESTS);
-        suite.setThreadCount(10);
+            /* Add all test into suite */
+            suite.setTests(allTests);
+            suite.setParallel(XmlSuite.ParallelMode.TESTS);
+            suite.setThreadCount(10);
 
-        /* Execute a group of test */
-        String targetGroup = args.length != 0 ? args[0] : null;
-        if (targetGroup != null) {
+            /* Execute a group of test */
+            String targetGroup = args.length != 0 ? args[0] : null;
+            if (targetGroup != null) {
 //            suite.addIncludedGroup("smoke");
-            suite.addIncludedGroup(targetGroup);
+                suite.addIncludedGroup(targetGroup);
+            }
+
+            System.out.println(suite.toXml());
+
+            /* Add the test suite to the list of suites */
+            List<XmlSuite> suites = new ArrayList<>();
+            suites.add(suite);
+
+            /* Invoke TestNG run() method */
+            testNG.setXmlSuites(suites);
+            testNG.run();
+        } else {
+            switch (PlatformType.valueOf(platformName)) {
+                case ios:
+                    throw new RuntimeException("iOS Device List is empty");
+                case android:
+                    throw new RuntimeException("Android Device List is empty");
+            }
         }
-
-        System.out.println(suite.toXml());
-
-        /* Add the test suite to the list of suites */
-        List<XmlSuite> suites = new ArrayList<>();
-        suites.add(suite);
-
-        /* Invoke TestNG run() method */
-        testNG.setXmlSuites(suites);
-        testNG.run();
     }
+
 }

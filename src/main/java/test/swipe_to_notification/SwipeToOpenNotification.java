@@ -1,4 +1,4 @@
-package test.api_learning;
+package test.swipe_to_notification;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

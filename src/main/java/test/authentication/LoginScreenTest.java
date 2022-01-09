@@ -41,19 +41,13 @@ public class LoginScreenTest extends BaseTest {
 
     @DataProvider
     public LoginCreds[] invalidLoginCredsData() {
-        /* Use this path to run directly in IntelliJ
-         * String jsonLoc = "/src/main/resources/test-data/authentication/invalidLoginCreds.json";
-         * The following path is used when executing test with Jar file */
-        String jsonLoc = "test-data/authentication/invalidLoginCreds.json";
+        String jsonLoc = "/test-data/authentication/invalidLoginCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, LoginCreds[].class);
     }
 
     @DataProvider
     public LoginCreds[] validLoginCredsData() {
-        /* Use this path to run directly in IntelliJ
-         * String jsonLoc = "/src/main/resources/test-data/authentication/validLoginCreds.json";
-         * The following path is used when executing test with Jar file */
-        String jsonLoc = "test-data/authentication/validLoginCreds.json";
+        String jsonLoc = "/test-data/authentication/validLoginCreds.json";
         return new DataObjectBuilder().buildDataObject(jsonLoc, LoginCreds[].class);
     }
 }
